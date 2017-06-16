@@ -1,0 +1,22 @@
+include_directories(
+src
+)
+
+
+set( SOURCES
+src/NSObject+KVCSupport.m
+src/NSArray+KeyValueCoding.m
+src/NSDictionary+KeyValueCoding.m
+src/NSMutableDictionary+KeyValueCoding.m
+src/NSObject+KeyValueCoding.m
+src/NSObject+_MulleObjCKVCInformation.m
+src/NSProxy+_MulleObjCKVCInformation.m
+src/NSSortDescriptor+NSKeyValueCoding.m
+src/_MulleObjCInstanceVariableAccess.m
+src/_MulleObjCKVCInformation.m
+)
+
+set( PUBLIC_HEADERS
+src/MulleObjCFoundationKVC.h
+src/NSObject+KeyValueCoding.h
+)
