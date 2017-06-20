@@ -10,27 +10,33 @@
 
 // other files in this library
 
-// other libraries of MulleObjCFoundation
+// other libraries of MulleObjCStandardFoundation
 
 // std-c and other dependencies
-#import <MulleObjCFoundation/MulleObjCFoundationSetup.h>
+#import <MulleObjCStandardFoundation/MulleObjCFoundationSetup.h>
 
 
-__attribute__((const))  // always returns same value (in same thread)
-struct _mulle_objc_runtime  *__get_or_create_mulle_objc_runtime( void)
+static void   bang( struct _mulle_objc_universe *universe,
+                    void (*crunch)( void),
+                    void *userinfo)
 {
-   struct _mulle_objc_runtime  *runtime;
+   struct _ns_foundation_setupconfig   setup;
 
-   runtime = __mulle_objc_get_runtime();
-   if( _mulle_objc_runtime_is_initialized( runtime))
-      return( runtime);
+   MulleObjCFoundationGetDefaultSetupConfig( &setup);
+   ns_objc_universe_setup( universe, &setup.config);
+}
 
-   {
-      struct _ns_foundation_setupconfig   setup;
 
-      MulleObjCFoundationGetDefaultSetupConfig( &setup);
-      return( ns_objc_create_runtime( &setup.config));
-   }
+MULLE_C_CONST_RETURN  // always returns same value (in same thread)
+struct _mulle_objc_universe  *__get_or_create_mulle_objc_universe( void)
+{
+   struct _mulle_objc_universe   *universe;
+
+   universe = __mulle_objc_get_universe();
+   if( ! _mulle_objc_universe_is_initialized( universe))
+      _mulle_objc_universe_bang( universe, bang, NULL, NULL);
+
+   return( universe);
 }
 
 

@@ -1,6 +1,6 @@
 //
 //  MulleObjCFoundationKVC.h
-//  MulleObjCFoundation
+//  MulleObjCStandardFoundation
 //
 //  Copyright (c) 2016 Nat! - Mulle kybernetiK.
 //  Copyright (c) 2016 Codeon GmbH.
@@ -33,7 +33,9 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 //
+#import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>
 
+#define MULLE_OBJC_KVC_FOUNDATION_VERSION   MULLE_OBJC_FOUNDARTION
 
 // export everything with NS
 #import "NSNumber+MulleObjCKVCArithmetic.h"
@@ -41,6 +43,7 @@
 #import "NSObject+KeyValueCoding.h"
 
 // export everything with MulleObjC
+#import "MulleObjCLoader+MulleObjCKVCFoundation.h"
 
 
 // export nothing with _MulleObjC

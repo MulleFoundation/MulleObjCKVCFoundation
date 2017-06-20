@@ -41,8 +41,8 @@
 #import "NSNumber+MulleObjCKVCArithmetic.h"
 
 // std-c and other dependencies
-#import <MulleObjCFoundation/private/_MulleObjCASCIIString.h>
-#import <MulleObjCFoundation/private/_MulleObjCCheatingASCIIString.h>
+#import <MulleObjCStandardFoundation/private/_MulleObjCASCIIString.h>
+#import <MulleObjCStandardFoundation/private/_MulleObjCCheatingASCIIString.h>
 
 
 NSString   *NSUndefinedKeyException = @"NSUndefinedKeyException";
