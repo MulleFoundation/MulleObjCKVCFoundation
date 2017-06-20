@@ -8,15 +8,20 @@ src/NSObject+KVCSupport.m
 src/NSArray+KeyValueCoding.m
 src/NSDictionary+KeyValueCoding.m
 src/NSMutableDictionary+KeyValueCoding.m
+src/NSNumber+MulleObjCKVCArithmetic.m
 src/NSObject+KeyValueCoding.m
 src/NSObject+_MulleObjCKVCInformation.m
 src/NSProxy+_MulleObjCKVCInformation.m
 src/NSSortDescriptor+NSKeyValueCoding.m
 src/_MulleObjCInstanceVariableAccess.m
 src/_MulleObjCKVCInformation.m
+src/MulleObjCLoader+MulleObjCKVCFoundation.m
 )
 
 set( PUBLIC_HEADERS
-src/MulleObjCFoundationKVC.h
+src/MulleObjCKVCFoundation.h
+src/NSNumber+MulleObjCKVCArithmetic.h
+src/NSObject+KVCSupport.h
 src/NSObject+KeyValueCoding.h
+src/MulleObjCLoader+MulleObjCKVCFoundation.h
 )

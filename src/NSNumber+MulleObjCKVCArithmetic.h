@@ -1,6 +1,6 @@
 //
 //  NSNumber+MulleObjCKVCArithmetic.h
-//  MulleObjCFoundation
+//  MulleObjCStandardFoundation
 //
 //  Copyright (c) 2016 Nat! - Mulle kybernetiK.
 //  Copyright (c) 2016 Codeon GmbH.
@@ -34,7 +34,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <MulleObjCFoundation/MulleObjCFoundation.h>
+#import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>
 
 //
 // some small routines used for arithmetic in collection operators

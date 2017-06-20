@@ -33,7 +33,7 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 //
-#import <MulleObjCFoundation/MulleObjCFoundation.h>
+#import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>
 
 // other files in this library
 #import "NSObject+KeyValueCoding.h"

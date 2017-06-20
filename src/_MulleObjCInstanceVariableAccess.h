@@ -1,6 +1,6 @@
 //
 //  _MulleObjCInstanceVariableAccess.h
-//  MulleObjCFoundation
+//  MulleObjCStandardFoundation
 //
 //  Copyright (c) 2006 Nat! - Mulle kybernetiK.
 //  Copyright (c) 2006 Codeon GmbH.
@@ -33,7 +33,7 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 //
-#import <MulleObjCFoundation/MulleObjCFoundation.h>
+#import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>
 
 
 void   _MulleObjCSetInstanceVariableForType( id p, unsigned int offset, id value, char valueType);

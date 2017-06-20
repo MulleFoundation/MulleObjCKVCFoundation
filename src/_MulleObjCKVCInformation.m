@@ -38,7 +38,7 @@
 // other files in this library
 #import "NSObject+_MulleObjCKVCInformation.h"
 
-// other libraries of MulleObjCFoundation
+// other libraries of MulleObjCStandardFoundation
 
 // std-c and other dependencies
 #include <ctype.h>

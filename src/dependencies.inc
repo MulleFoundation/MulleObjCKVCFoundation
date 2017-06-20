@@ -1,0 +1,11 @@
+      { @selector( MulleObjCLoader), @selector( MulleObjCStandardFoundation) },      // 58bd58d3,efe3d73e
+      { @selector( NSArray), @selector( _KeyValueCoding) },   // 55e6335f,5806c9a6
+      { @selector( NSDictionary), @selector( _KeyValueCoding) },   // ca46313c,5806c9a6
+      { @selector( NSMutableDictionary), @selector( _KeyValueCoding) },   // edeb2f5a,5806c9a6
+      { @selector( NSNumber), @selector( MulleObjCKVCArithmetic) },   // 1fa441bb,3364e62c
+      { @selector( NSObject), @selector( KVCSupport) },   // e9e78cbd,a54530f6
+      { @selector( NSObject), @selector( _KeyValueCoding) },   // e9e78cbd,5806c9a6
+      { @selector( NSObject), @selector( _KeyValueCodingCompatibility) },   // e9e78cbd,af2f38c6
+      { @selector( NSObject), @selector( _MulleObjCKVCInformation) },   // e9e78cbd,aac62421
+      { @selector( NSProxy), @selector( _MulleObjCKVCInformation) },   // 50df5880,aac62421
+      { @selector( NSSortDescriptor), @selector( NSKeyValueCoding) },   // 115836cf,9f612d56

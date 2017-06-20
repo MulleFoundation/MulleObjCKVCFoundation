@@ -1,6 +1,6 @@
 //
 //  NSNumber+MulleObjCKVCArithmetic.m
-//  MulleObjCFoundation
+//  MulleObjCStandardFoundation
 //
 //  Copyright (c) 2016 Nat! - Mulle kybernetiK.
 //  Copyright (c) 2016 Codeon GmbH.
@@ -37,9 +37,6 @@
 #import "NSNumber+MulleObjCKVCArithmetic.h"
 
 // other files in this library
-
-// other libraries of MulleObjCFoundation
-#import "MulleObjCFoundationException.h"
 
 // std-c and other dependencies
 

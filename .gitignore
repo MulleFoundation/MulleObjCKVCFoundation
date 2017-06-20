@@ -32,5 +32,4 @@ addictions/
 
 /.repos
 build-xcode.d/
-tests/NSURL/pipefilebin/tap-info.sh
 tap-info.sh
