@@ -28,8 +28,9 @@ endif()
 ##                            MulleObjCFoundation.xcodeproj > CMakeSourcesAndHeaders.txt
 ##### CMakeSourcesAndHeaders.txt GENERATED FROM XCODE PROJECT
 
-include( CMakeSourcesAndHeaders.txt)
+set( MULLE_OBJC_KVC_FOUNDATION_LIBRARY ON)
 include( CMakeDependencies.txt)
+include( CMakeSourcesAndHeaders.txt)
 
 
 add_library( MulleObjCKVCFoundation STATIC
