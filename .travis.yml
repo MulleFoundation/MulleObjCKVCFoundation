@@ -6,6 +6,8 @@ sudo: required
 before_install:
   - wget -q -O- https://raw.githubusercontent.com/mulle-objc/mulle-objc-developer/release/install-ubuntu.sh | sudo APTFLAGS=-y sh
 
+# travis now exports CC, which mulle-install honors
+# but that's no good for us
 script:
-   - mulle-install -vv -V --prefix /tmp
-   - mulle-test -v -V
+   - CC= mulle-install -vv -V --prefix /tmp
+   - CC= mulle-test -v -V
