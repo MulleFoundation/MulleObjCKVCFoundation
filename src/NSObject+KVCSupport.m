@@ -68,7 +68,7 @@ static void  divine_info( NSObject *self,
    }
 
    info->methodid[ type]       = (mulle_objc_methodid_t) kvcInfo->selector;
-   info->implementation[ type] = (mulle_objc_methodimplementation_t) kvcInfo->implementation;
+   info->implementation[ type] = (mulle_objc_implementation_t) kvcInfo->implementation;
 }
 
 //

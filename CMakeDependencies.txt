@@ -1,6 +1,8 @@
 if( NOT __MULLE_OBJC_KVC_FOUNDATION_CMAKE_DEPENDENCIES_TXT__)
    set( __MULLE_OBJC_KVC_FOUNDATION_CMAKE_DEPENDENCIES_TXT__ ON)
 
+   message( STATUS "# Include MulleObjCKVCFoundation CMakeDependencies.txt")
+
    include( ${DEPENDENCIES_DIR}/include/MulleObjCStandardFoundation/CMakeDependencies.txt)
 
    if( NOT MULLE_OBJC_KVC_FOUNDATION_LIBRARY)
@@ -20,5 +22,7 @@ if( NOT __MULLE_OBJC_KVC_FOUNDATION_CMAKE_DEPENDENCIES_TXT__)
       endif()
    endif()
 
-   message( STATUS "# Included MulleObjCKVCFoundation CMakeDependencies.txt")
+   if( MSVC)
+      set( MULLE_OBJC_KVC_FOUNDATION_DEFINITIONS ${MULLE_OBJC_STANDARD_FOUNDATION_DEFINITIONS})
+   endif()
 endif()

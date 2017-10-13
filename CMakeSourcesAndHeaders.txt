@@ -1,4 +1,4 @@
-include_directories(
+set( INCLUDE_DIRS
 src
 )
 
@@ -24,4 +24,9 @@ src/NSNumber+MulleObjCKVCArithmetic.h
 src/NSObject+KVCSupport.h
 src/NSObject+KeyValueCoding.h
 src/MulleObjCLoader+MulleObjCKVCFoundation.h
+)
+
+
+set( STANDALONE_SOURCES
+src/MulleObjCKVCFoundationStandalone.m
 )

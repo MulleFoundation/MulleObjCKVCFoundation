@@ -171,7 +171,7 @@ static BOOL   useInstanceMethod( struct _MulleObjCKVCInformation *p, Class aClas
    char                        *s;
 
    sel    = NSSelectorFromString( methodName);
-   method = mulle_objc_class_search_method( _mulle_objc_infraclass_as_class( aClass), (mulle_objc_methodid_t) sel);
+   method = mulle_objc_class_defaultsearch_method( _mulle_objc_infraclass_as_class( aClass), (mulle_objc_methodid_t) sel);
 
    if( ! method)
       return( NO);
@@ -441,8 +441,8 @@ BOOL  _MulleObjCKVCIsUsingSameMethodOfTypeAsClass( Class aClass, enum _MulleObjC
    mulle_objc_methodid_t       sel;
 
    sel            = (mulle_objc_methodid_t) _MulleObjCKVCSelectorForMethodType( type);
-   methodClass    = mulle_objc_class_search_method( _mulle_objc_infraclass_as_class( aClass), sel);  // EOFault returns nil f.e.
-   methodNSObject = mulle_objc_class_search_method( _mulle_objc_infraclass_as_class( referenceClass), sel);
+   methodClass    = mulle_objc_class_defaultsearch_method( _mulle_objc_infraclass_as_class( aClass), sel);  // EOFault returns nil f.e.
+   methodNSObject = mulle_objc_class_defaultsearch_method( _mulle_objc_infraclass_as_class( referenceClass), sel);
 
    NSCParameterAssert( methodNSObject);
 
