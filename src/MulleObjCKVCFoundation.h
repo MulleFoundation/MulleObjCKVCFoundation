@@ -35,7 +35,7 @@
 //
 #import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>
 
-#define MULLE_OBJC_KVC_FOUNDATION_VERSION   MULLE_OBJC_FOUNDARTION
+#define MULLE_OBJC_KVC_FOUNDATION_VERSION   MULLE_OBJC_STANDARD_FOUNDATION_VERSION
 
 // export everything with NS
 #import "NSNumber+MulleObjCKVCArithmetic.h"
