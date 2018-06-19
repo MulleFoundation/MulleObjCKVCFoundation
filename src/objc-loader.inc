@@ -1,0 +1,11 @@
+      { @selector( NSArray), @selector( MulleObjCKVCArithmetic) },      // 233490fe;NSArray;51efafe9;MulleObjCKVCArithmetic
+      { @selector( NSArray), @selector( _KeyValueCoding) },      // 233490fe;NSArray;c60e3006;_KeyValueCoding
+      { @selector( NSDictionary), @selector( _KeyValueCoding) },      // 8b2abcad;NSDictionary;c60e3006;_KeyValueCoding
+      { @selector( NSMutableDictionary), @selector( _KeyValueCoding) },      // 2f2fa84a;NSMutableDictionary;c60e3006;_KeyValueCoding
+      { @selector( NSNumber), @selector( MulleObjCKVCArithmetic) },      // 8ba34f39;NSNumber;51efafe9;MulleObjCKVCArithmetic
+      { @selector( NSObject), @selector( KVCSupport) },      // b3a66256;NSObject;5d846183;KVCSupport
+      { @selector( NSObject), @selector( _KeyValueCoding) },      // b3a66256;NSObject;c60e3006;_KeyValueCoding
+      { @selector( NSObject), @selector( _KeyValueCodingCompatibility) },      // b3a66256;NSObject;a0853a05;_KeyValueCodingCompatibility
+      { @selector( NSObject), @selector( _MulleObjCKVCInformation) },      // b3a66256;NSObject;9789c697;_MulleObjCKVCInformation
+      { @selector( NSProxy), @selector( _MulleObjCKVCInformation) },      // 9a42ec29;NSProxy;9789c697;_MulleObjCKVCInformation
+      { @selector( NSSortDescriptor), @selector( NSKeyValueCoding) },      // 38a79ab2;NSSortDescriptor;19d06181;NSKeyValueCoding

@@ -1,78 +1,131 @@
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required( VERSION 3.1)
 
 project( MulleObjCKVCFoundation C)
 
 
-set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
-   ${CMAKE_SOURCE_DIR}/mulle-configuration/cmake)
-message(STATUS "CMAKE_MODULE_PATH is ${CMAKE_MODULE_PATH}")
-message(STATUS "CMAKE_BUILD_TYPE is ${CMAKE_BUILD_TYPE}")
+### mulle-sde environment
 
-set( MULLE_LANGUAGE "ObjC")
+# add cmake module paths to search path
+list( INSERT CMAKE_MODULE_PATH 0 "${PROJECT_SOURCE_DIR}/cmake/share")
+list( INSERT CMAKE_MODULE_PATH 0 "${PROJECT_SOURCE_DIR}/cmake")
 
-if( "${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-  include( Debug)
-else()
-  include( Release)
-endif()
+include( Environment)
 
-##### CMakeSourcesAndHeaders.txt GENERATED FROM XCODE PROJECT
-## MEMO: recreate this with mulle-xcode-to-cmake 0.5.2 or better
-##       mulle-xcode-to-cmake -t MulleObjCStandardFoundation \
-##                            -t MulleObjCArchiver \
-##                            -t MulleObjCCore \
-##                            -t MulleObjCKVC \
-##                            -t MulleObjCLocale \
-##                            -t MulleObjCNotification \
-##                            -t MulleObjCPropertyList \
-##                            sexport  \
-##                            MulleObjCFoundation.xcodeproj > CMakeSourcesAndHeaders.txt
-##### CMakeSourcesAndHeaders.txt GENERATED FROM XCODE PROJECT
 
-set( MULLE_OBJC_KVC_FOUNDATION_LIBRARY ON)
-include( CMakeDependencies.txt)
-include( CMakeSourcesAndHeaders.txt)
+### Files
+
+include( PreFiles OPTIONAL)
+
+set( MULLE_OBJC_KVCFOUNDATION_LIBRARY ON)
+
+#
+# Include all non underscored .cmake files in ./cmake
+#
+file( GLOB LOCAL_CMAKE_INCLUDES
+   "cmake/[A-Za-z0-9]*.cmake"
+)
+
+foreach( FILE ${LOCAL_CMAKE_INCLUDES} )
+   include( "${FILE}")
+endforeach()
+
 
 include_directories( ${INCLUDE_DIRS})
 
+include( PostFiles OPTIONAL)
 
-set( PUBLIC_HEADERS
-${PUBLIC_HEADERS}
-"CMakeDependencies.txt"
-"src/dependencies.inc"
+set( PROJECT_FILES
+   ${PROJECT_FILES}
+   ${SOURCES}
+   ${PUBLIC_HEADERS}
+   ${PRIVATE_HEADERS}
+   ${CMAKE_EDITABLE_FILES}
 )
 
-add_library( MulleObjCKVCFoundation STATIC
-${SOURCES}
-${PUBLIC_HEADERS}
-${PRIVATE_HEADERS}
-CMakeSourcesAndHeaders.txt
+### Library
+
+include( PreLibrary OPTIONAL)
+
+# ##################################
+# Mainly of interest for Objective-C
+# ##################################
+# Libraries are built in two stages:
+#
+# In the first step the PROJECT_FILES are compiled.
+# In the second step STAGE2_SOURCES are added.
+# This allows PostLibrary to run an analysis step over PROJECT_FILES and
+# generate files to be included by STAGE2_SOURCES. If there are no
+# STAGE2_SOURCES then this is just a more verbose way of doing it.
+# OBJC_LOADER_INC is the generated analysis step.
+#
+#
+add_library( "_1_MulleObjCKVCFoundation" OBJECT
+   ${PROJECT_FILES}
 )
 
-set( OBJC_LIBRARY_NAME "MulleObjCKVCFoundation")
+set( ALL_OBJECT_FILES
+   $<TARGET_OBJECTS:_1_MulleObjCKVCFoundation>
+)
 
-include( DependenciesIncObjC)
+set_property( TARGET "_1_MulleObjCKVCFoundation" PROPERTY CXX_STANDARD 11)
+
+if( STAGE2_SOURCES)
+   add_library( "_2_MulleObjCKVCFoundation" OBJECT
+      ${STAGE2_SOURCES}
+      ${STAGE2_HEADERS}
+   )
+   set( ALL_OBJECT_FILES
+      ${ALL_OBJECT_FILES}
+      $<TARGET_OBJECTS:_2_MulleObjCKVCFoundation>
+   )
+   set_property( TARGET "_2_MulleObjCKVCFoundation" PROPERTY CXX_STANDARD 11)
+else()
+   if( STAGE2_HEADERS)
+      message( FATAL_ERROR "No STAGE2_SOURCES found but STAGE2_HEADERS exist")
+   endif()
+endif()
+
+
+add_library( "MulleObjCKVCFoundation"
+   ${ALL_OBJECT_FILES}
+)
+
+include( Library OPTIONAL)
+
+set( INSTALL_LIBRARY_TARGETS
+   "MulleObjCKVCFoundation"
+   "${INSTALL_LIBRARY_TARGETS}"
+)
+
+include( PostLibrary OPTIONAL)
 
 
 #
-# produce a standalone dll/dylib/so for testing mainly
-# though testing could go static at some point in time
-# (shared is more frugal though)
+# defined by cmake -DBUILD_SHARED_LIBS=ON
 #
-set( STANDALONE_BASE_NAME "MulleObjCKVCFoundation")
-set( STANDALONE_NAME "MulleObjCKVCFoundationStandalone")
-set( STANDALONE_DEFINITIONS ${MULLE_OBJC_KVC_FOUNDATION_DEFINITIONS})
-set( STANDALONE_ALL_LOAD_LIBRARIES
-    $<TARGET_FILE:${STANDALONE_BASE_NAME}>
-    ${OBJC_DEPENDENCY_LIBRARIES}
-    ${OBJC_STARTUP_LIBRARY}
-    ${C_DEPENDENCY_LIBRARIES}
-)
+if( BUILD_SHARED_LIBS)
+   set( SHARED_LIBRARY_LIST
+      ${DEPENDENCY_LIBRARIES}
+      ${OPTIONAL_DEPENDENCY_LIBRARIES}
+      ${OS_SPECIFIC_LIBRARIES}
+   )
 
-include( Standalone)
+   include( PostSharedLibrary OPTIONAL) # additional hook
 
-install( TARGETS MulleObjCKVCFoundation MulleObjCKVCFoundationStandalone DESTINATION "lib")
-install( FILES ${PUBLIC_HEADERS} DESTINATION "include/MulleObjCKVCFoundation")
+   target_link_libraries( MulleObjCKVCFoundation
+      ${SHARED_LIBRARY_LIST}
+   )
+endif()
+
+
+### Install
+
+include( PreInstall OPTIONAL)
+
+install( TARGETS ${INSTALL_LIBRARY_TARGETS} DESTINATION "lib")
+install( FILES ${PUBLIC_HEADERS}  DESTINATION "include/MulleObjCKVCFoundation")
 install( FILES ${PRIVATE_HEADERS} DESTINATION "include/MulleObjCKVCFoundation/private")
 
-include( MulleTest)
+install( FILES ${CMAKE_INCLUDES}  DESTINATION "include/MulleObjCKVCFoundation/cmake")
+
+include( PostInstall OPTIONAL)

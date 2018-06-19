@@ -1,9 +1,0 @@
-#
-# building expat is difficult, because it fails to build the man file
-# for which it needs a million prerequisites
-# so we just brew it
-# the OS X expat is too old
-#
-#git://git.code.sf.net/p/expat/code_git;expat
-
-${MULLE_FOUNDATION_REPOSITORIES:-https://github.com/mulle-nat}/MulleObjCStandardFoundation;;${MULLE_OBJC_STANDARD_FOUNDATION_BRANCH:-release}

@@ -34,13 +34,13 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>
+#import "import.h"
 
 //
 // some small routines used for arithmetic in collection operators
 // in general though, arithmetic on NSNumber is a bad idea
 //
-@interface NSNumber (MulleObjCKVCArithmetic)
+@interface NSNumber( MulleObjCKVCArithmetic)
 
 - (NSNumber *) _add:(NSNumber *) other;
 - (NSNumber *) _divideByInteger:(NSUInteger) divisor;

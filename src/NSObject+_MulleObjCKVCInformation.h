@@ -36,7 +36,7 @@
 #import "_MulleObjCKVCInformation.h"
 
 
-@interface NSObject ( _MulleObjCKVCInformation)
+@interface NSObject( _MulleObjCKVCInformation)
 
 + (BOOL) accessInstanceVariablesDirectly;
 + (BOOL) useStoredAccessor;

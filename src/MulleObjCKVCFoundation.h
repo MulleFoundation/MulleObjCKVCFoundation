@@ -33,9 +33,9 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 //
-#import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>
+#import "import.h"
 
-#define MULLE_OBJC_KVC_FOUNDATION_VERSION   MULLE_OBJC_STANDARD_FOUNDATION_VERSION
+#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0 << 20) | (13 << 8) | 0)
 
 // export everything with NS
 #import "NSNumber+MulleObjCKVCArithmetic.h"
@@ -47,3 +47,6 @@
 
 
 // export nothing with _MulleObjC
+#if MULLE_OBJC_STANDARD_FOUNDATION_VERSION < ((0 << 20) | (13 << 8) | 0)
+# error "MulleObjCStandardFoundation is too old"
+#endif

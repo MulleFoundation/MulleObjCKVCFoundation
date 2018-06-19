@@ -34,7 +34,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>
+#import "import.h"
 
 
 // TODO: real caching needed
