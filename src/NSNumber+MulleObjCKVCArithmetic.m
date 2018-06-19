@@ -41,7 +41,7 @@
 // std-c and other dependencies
 
 
-@implementation NSNumber (MulleObjCKVCArithmetic)
+@implementation NSNumber( MulleObjCKVCArithmetic)
 
 
 static int  simplify_type_for_arithmetic( int type)
@@ -164,6 +164,5 @@ do_ld_ld_div :
 bail:
    MulleObjCThrowInternalInconsistencyException( @"unknown objc-type");
 }
-
 
 @end

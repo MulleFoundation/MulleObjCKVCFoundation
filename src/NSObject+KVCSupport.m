@@ -38,9 +38,6 @@
 
 // other files in this library
 
-// std-c and other dependencies
-#import <mulle_concurrent/mulle_concurrent.h>
-
 
 @implementation NSObject ( KVCSupport)
 
