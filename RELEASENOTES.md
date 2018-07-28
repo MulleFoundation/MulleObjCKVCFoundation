@@ -1,3 +1,7 @@
+### 0.13.1
+
+* fix for mingw
+
 ## 0.13.0
 
 * migrated to mulle-sde
