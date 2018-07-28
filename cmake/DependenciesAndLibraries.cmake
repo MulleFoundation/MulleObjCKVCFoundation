@@ -18,7 +18,3 @@ include( _Libraries OPTIONAL)
 # Add OS specific dependencies to OS_SPECIFIC_LIBRARIES
 # Add all other dependencies (rest) to DEPENDENCY_LIBRARIES
 #
-
-if( NOT MULLE_OBJC_STARTUP_LIBRARY)
-   find_library( MULLE_OBJC_STARTUP_LIBRARY NAMES ${CMAKE_STATIC_LIBRARY_PREFIX}MulleObjCStandardFoundation-startup${CMAKE_STATIC_LIBRARY_SUFFIX} MulleObjC-startup)
-endif()
