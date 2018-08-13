@@ -1,11 +1,15 @@
 
+fswatch
+ssh
+curl
+uuidgen
+cc
+clang
+gcc
+ld
 otool
 install_name_tool
 xcrun
 xcodebuild
-inotifywait
-ssh
-cc
-gcc
-ld
 ninja
+make

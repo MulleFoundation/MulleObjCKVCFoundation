@@ -66,6 +66,10 @@ uname_to_cmake()
          fail "uname is empty"
       ;;
 
+      'mingw')
+         systemname="Windows"
+      ;;
+
       *)
          systemname="`tr 'a-z' 'A-Z' <<< "${uname:0:1}"`"
          systemname="${systemname}${uname:1}"
@@ -136,7 +140,7 @@ _emit_cmake_find_library()
 
    local preference="$1"; shift
 
-   local aliases="$1"
+   local names="$1"
    local identifier="$2"
    local containername="$3"
    local marks="$4"
@@ -144,10 +148,13 @@ _emit_cmake_find_library()
 
    local libraries
    local i
+   local quoted_names
 
    IFS=","; set -o noglob
-   for i in ${aliases}
+   for i in ${names}
    do
+      quoted_names="`concat "${quoted_names}" "\\\"${i}\\\"" `"
+
       case "${preference}" in
          "static")
             libraries="`concat "${libraries}" "\\\${CMAKE_STATIC_LIBRARY_PREFIX}${i}\\\${CMAKE_STATIC_LIBRARY_SUFFIX}"`"
@@ -167,10 +174,16 @@ _emit_cmake_find_library()
    local failstatus
 
    case ",${marks}," in
-      *,no-require-link,*)
+      *',no-require-link,'*)
 
          failstatus="STATUS"
-         failstring="${identifier}_LIBRARY is missing but it\'s \"no-require-link\""
+         failstring="${identifier}_LIBRARY is missing but it is marked as \\\"no-require-link\\\""
+      ;;
+
+      *',no-require,'*)
+
+         failstatus="STATUS"
+         failstring="${identifier}_LIBRARY is missing but it is marked as \\\"no-require\\\""
       ;;
 
       *)
@@ -200,13 +213,24 @@ ${indent}      get_filename_component( _TMP_${identifier}_ROOT "\${${identifier}
 ${indent}      get_filename_component( _TMP_${identifier}_ROOT "\${_TMP_${identifier}_ROOT}" DIRECTORY)
 ${indent}
 ${indent}      # search for DependenciesAndLibraries.cmake to include
-${indent}      foreach( _TMP_${identifier}_NAME in ${aliases})
+${indent}      foreach( _TMP_${identifier}_NAME ${quoted_names})
 ${indent}         set( _TMP_${identifier}_DIR "\${_TMP_${identifier}_ROOT}/include/\${_TMP_${identifier}_NAME}/cmake")
 ${indent}         # use explicit path to avoid "surprises"
 ${indent}         if( EXISTS "\${_TMP_${identifier}_DIR}/DependenciesAndLibraries.cmake")
 ${indent}            unset( ${identifier}_DEFINITIONS)
 ${indent}            list( INSERT CMAKE_MODULE_PATH 0 "\${_TMP_${identifier}_DIR}")
+${indent}            # we only want top level INHERIT_OBJC_LOADERS, so disable them
+${indent}            if( NOT NO_INHERIT_OBJC_LOADERS)
+${indent}               set( NO_INHERIT_OBJC_LOADERS OFF)
+${indent}            endif()
+${indent}            list( APPEND _TMP_INHERIT_OBJC_LOADERS \${NO_INHERIT_OBJC_LOADERS})
+${indent}            set( NO_INHERIT_OBJC_LOADERS ON)
+${indent}            #
 ${indent}            include( "\${_TMP_${identifier}_DIR}/DependenciesAndLibraries.cmake")
+${indent}            #
+${indent}            list( GET _TMP_INHERIT_OBJC_LOADERS -1 NO_INHERIT_OBJC_LOADERS)
+${indent}            list( REMOVE_AT _TMP_INHERIT_OBJC_LOADERS -1)
+${indent}            #
 ${indent}            list( REMOVE_ITEM CMAKE_MODULE_PATH "\${_TMP_${identifier}_DIR}")
 ${indent}            set( INHERITED_DEFINITIONS
 ${indent}               \${INHERITED_DEFINITIONS}
@@ -217,6 +241,8 @@ ${indent}            break()
 ${indent}         endif()
 ${indent}      endforeach()
 EOF
+
+# ${indent}         message( STATUS "_TMP_${identifier}_DIR is \${_TMP_${identifier}_DIR}")
 
    #
    # for objective-c we find objc-loader.inc in the public include files
@@ -229,17 +255,20 @@ EOF
          cat <<EOF
 ${indent}
 ${indent}      # search for objc-loader.inc in include directory
-${indent}      foreach( _TMP_${identifier}_NAME in ${aliases})
-${indent}         set( _TMP_${identifier}_FILE "\${_TMP_${identifier}_ROOT}/include/\${_TMP_${identifier}_NAME}/objc-loader.inc")
-${indent}         if( EXISTS "\${_TMP_${identifier}_FILE}")
-${indent}            set( INHERITED_OBJC_LOADERS
-${indent}               \${INHERITED_OBJC_LOADERS}
-${indent}               \${_TMP_${identifier}_FILE}
-${indent}               CACHE INTERNAL "need to cache this"
-${indent}            )
-${indent}            break()
-${indent}         endif()
-${indent}      endforeach()
+${indent}      # this can be turned  off (see above)
+${indent}      if( NOT NO_INHERIT_OBJC_LOADERS)
+${indent}         foreach( _TMP_${identifier}_NAME ${quoted_names})
+${indent}            set( _TMP_${identifier}_FILE "\${_TMP_${identifier}_ROOT}/include/\${_TMP_${identifier}_NAME}/objc-loader.inc")
+${indent}            if( EXISTS "\${_TMP_${identifier}_FILE}")
+${indent}               set( INHERITED_OBJC_LOADERS
+${indent}                  \${INHERITED_OBJC_LOADERS}
+${indent}                  \${_TMP_${identifier}_FILE}
+${indent}                  CACHE INTERNAL "need to cache this"
+${indent}               )
+${indent}               break()
+${indent}            endif()
+${indent}         endforeach()
+${indent}      endif()
 EOF
       ;;
    esac
@@ -275,7 +304,7 @@ _emit_cmake_header_only()
 {
    log_entry "_emit_cmake_header_only" "$@"
 
-   local aliases="$1"
+   local names="$1"
    local identifier="$2"
    local containername="$3"
    local marks="$4"
@@ -285,7 +314,7 @@ _emit_cmake_header_only()
    local i
 
    IFS=","; set -o noglob
-   for i in ${aliases}
+   for i in ${names}
    do
       headers="`concat "${headers}" "${i}.h"`"
       headers="`concat "${headers}" "${i}/${i}.h"`"
@@ -293,10 +322,16 @@ _emit_cmake_header_only()
    IFS="${DEFAULT_IFS}"; set +o noglob
 
    case ",${marks}," in
-      *,no-require-link,*)
+      *',no-require-header,'*)
 
          failstatus="STATUS"
-         failstring="${identifier}_HEADER is missing but it\'s \"no-require-link\""
+         failstring="${identifier}_HEADER is missing but it is marked as \\\"no-require-header\\\""
+      ;;
+
+      *',no-require,'*)
+
+         failstatus="STATUS"
+         failstring="${identifier}_LIBRARY is missing but it is marked as \\\"no-require\\\""
       ;;
 
       *)
@@ -304,8 +339,11 @@ _emit_cmake_header_only()
          failstring="${identifier}_HEADER was not found"
       ;;
    esac
+
    #
-   # the idea here is that cmake should generate the proper -I option
+   # The idea here is that cmake should generate the proper -I option.
+   # The header find_file might be useful to copy it somewhere. Otherwise
+   # probably useless. (could leave it out)
    #
    cat <<EOF
 ${indent}if( NOT ${identifier}_HEADER)
@@ -388,14 +426,12 @@ emit_cmake_dependency()
 
    local identifier
    local filename
+   local names
 
-   if [ -z "${aliases}" ]
-   then
-      aliases="${address}"
-   fi
+   names="`comma_concat "${aliases}" "${address}" `"
 
    # first alias determines the identifier
-   filename="`fast_basename "${aliases%%,*}"`"
+   filename="`fast_basename "${names%%,*}"`"
 
    if [ -z "${MULLE_CASE_SH}" ]
    then
@@ -407,7 +443,7 @@ emit_cmake_dependency()
    identifier="`printf "%s" "${identifier}" | tr -c 'a-zA-Z0-9' '_'`"
    identifier="`tr 'a-z' 'A-Z' <<< "${identifier}"`"
 
-   "${emitter}" "${aliases}" \
+   "${emitter}" "${names}" \
                 "${identifier}" \
                 "${name}" \
                 "${marks}" \
