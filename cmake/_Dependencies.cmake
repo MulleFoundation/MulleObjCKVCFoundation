@@ -24,6 +24,7 @@ if( NOT MULLE_OBJC_STANDARD_FOUNDATION_LIBRARY)
       foreach( _TMP_MULLE_OBJC_STANDARD_FOUNDATION_NAME "MulleObjCStandardFoundation")
          set( _TMP_MULLE_OBJC_STANDARD_FOUNDATION_DIR "${_TMP_MULLE_OBJC_STANDARD_FOUNDATION_ROOT}/include/${_TMP_MULLE_OBJC_STANDARD_FOUNDATION_NAME}/cmake")
          # use explicit path to avoid "surprises"
+         message( STATUS "_TMP_MULLE_OBJC_STANDARD_FOUNDATION_DIR is ${_TMP_MULLE_OBJC_STANDARD_FOUNDATION_DIR}")
          if( EXISTS "${_TMP_MULLE_OBJC_STANDARD_FOUNDATION_DIR}/DependenciesAndLibraries.cmake")
             unset( MULLE_OBJC_STANDARD_FOUNDATION_DEFINITIONS)
             list( INSERT CMAKE_MODULE_PATH 0 "${_TMP_MULLE_OBJC_STANDARD_FOUNDATION_DIR}")
@@ -46,6 +47,8 @@ if( NOT MULLE_OBJC_STANDARD_FOUNDATION_LIBRARY)
                CACHE INTERNAL "need to cache this"
             )
             break()
+         else()
+            message( STATUS "${_TMP_MULLE_OBJC_STANDARD_FOUNDATION_DIR}/DependenciesAndLibraries.cmake not found")
          endif()
       endforeach()
 
