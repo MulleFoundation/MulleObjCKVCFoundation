@@ -13,32 +13,33 @@ endif()
 
 # include before (!)
 
-include( StandaloneCAux OPTIONAL)
+include( StandaloneAuxC OPTIONAL)
 
 if( STANDALONE)
    if( NOT LIBRARY_NAME)
-      set( LIBRARY_NAME "MulleObjCKVCFoundation")
+      set( LIBRARY_NAME "${PROJECT_NAME}")
    endif()
 
    if( NOT STANDALONE_NAME)
-      set( STANDALONE_NAME "MulleObjCKVCFoundation-standalone")
+      set( STANDALONE_NAME "${LIBRARY_NAME}-standalone")
    endif()
 
    if( NOT STANDALONE_DEFINITIONS)
-      set( STANDALONE_DEFINITIONS ${MULLE_OBJC_KVCFOUNDATION_DEFINITIONS})
+      set( STANDALONE_DEFINITIONS ${MULLE_OBJC_KVC_FOUNDATION_DEFINITIONS})
    endif()
 
    #
    # A standalone library has all symbols and nothing is optimized away
-   # sorta like a big static library, just shared
+   # sorta like a big static library, just shared, The OS specific stuff
+   # should be shared libraries, otherwise they are only normally
+   # linked against (only required symbols.
    #
    if( NOT STANDALONE_ALL_LOAD_LIBRARIES)
       set( STANDALONE_ALL_LOAD_LIBRARIES
-         $<TARGET_FILE:MulleObjCKVCFoundation>
+         $<TARGET_FILE:${LIBRARY_NAME}>
          ${ALL_LOAD_DEPENDENCY_LIBRARIES}
          ${DEPENDENCY_LIBRARIES}
          ${OPTIONAL_DEPENDENCY_LIBRARIES}
-         ${OS_SPECIFIC_LIBRARIES}
       )
    endif()
 
@@ -67,7 +68,7 @@ if( STANDALONE)
       if( NOT STANDALONE_SOURCES)
          message( FATAL_ERROR "You need to define STANDALONE_SOURCES. Add a file
 ${STANDALONE_NAME}.c with contents like this to it:
-int  ___mulle_objc_kvcfoundation_unused__;
+int  ___mulle_objc_kvc_foundation_unused__;
 and everybody will be happy")
       endif()
 
@@ -157,6 +158,8 @@ and everybody will be happy")
 
       target_link_libraries( ${STANDALONE_NAME}
          ${FORCE_STANDALONE_ALL_LOAD_LIBRARIES}
+         ${OS_SPECIFIC_LIBRARIES}
+         ${STARTUP_LIBRARY}
       )
 
       set( INSTALL_LIBRARY_TARGETS
