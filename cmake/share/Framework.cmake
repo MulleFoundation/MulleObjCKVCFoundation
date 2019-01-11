@@ -15,8 +15,11 @@ if( NOT FRAMEWORK_FILES)
    set( FRAMEWORK_FILES "${PROJECT_FILES}")
 endif()
 
-
 include( PreFramework OPTIONAL)
+
+if( NOT SOURCES)
+   message( FATAL_ERROR "There are no sources to compile for framework ${FRAMEWORK_NAME}. Did mulle-sde update run yet ?")
+endif()
 
 add_library( "${FRAMEWORK_NAME}" SHARED
    ${FRAMEWORK_FILES}
@@ -25,10 +28,12 @@ add_library( "${FRAMEWORK_NAME}" SHARED
 include( FrameworkAux OPTIONAL)
 
 if( NOT FRAMEWORK_LIBRARY_LIST)
-   ${DEPENDENCY_LIBRARIES}
-   ${OPTIONAL_DEPENDENCY_LIBRARIES}
-   ${OS_SPECIFIC_LIBRARIES}
-)
+  set( FRAMEWORK_LIBRARY_LIST
+    ${DEPENDENCY_LIBRARIES}
+    ${OPTIONAL_DEPENDENCY_LIBRARIES}
+    ${OS_SPECIFIC_LIBRARIES}
+  )
+endif()
 
 set( SHARED_LIBRARY_LIST ${FRAMEWORK_LIBRARY_LIST})
 

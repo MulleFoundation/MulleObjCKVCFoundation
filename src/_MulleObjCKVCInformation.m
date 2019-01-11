@@ -151,7 +151,9 @@ static void   handle_ivar( struct _MulleObjCKVCInformation *p, struct _mulle_obj
 }
 
 
-void   _MulleObjCKVCInformationUseUnboundKeyMethod( struct _MulleObjCKVCInformation *p, Class aClass, BOOL isSetter)
+void   _MulleObjCKVCInformationUseUnboundKeyMethod( struct _MulleObjCKVCInformation *p,
+                                                    Class aClass,
+                                                    BOOL isSetter)
 {
    NSCParameterAssert( p->valueType == _C_ID);
 
@@ -163,7 +165,10 @@ void   _MulleObjCKVCInformationUseUnboundKeyMethod( struct _MulleObjCKVCInformat
 }
 
 
-static BOOL   useInstanceMethod( struct _MulleObjCKVCInformation *p, Class aClass, NSString *methodName, BOOL isSetter)
+static BOOL   useInstanceMethod( struct _MulleObjCKVCInformation *p,
+                                 Class aClass,
+                                 NSString *methodName,
+                                 BOOL isSetter)
 {
    SEL                         sel;
    struct _mulle_objc_method   *method;
@@ -171,12 +176,13 @@ static BOOL   useInstanceMethod( struct _MulleObjCKVCInformation *p, Class aClas
    char                        *s;
 
    sel    = NSSelectorFromString( methodName);
-   method = mulle_objc_class_defaultsearch_method( _mulle_objc_infraclass_as_class( aClass), (mulle_objc_methodid_t) sel);
+   method = mulle_objc_class_defaultsearch_method( _mulle_objc_infraclass_as_class( aClass),
+                                                  (mulle_objc_methodid_t) sel);
 
    if( ! method)
       return( NO);
 
-#warning (nat) ugly fing hack. should parse method_types properly
+// TODO: ugly fing hack. should parse method_types properly
    type  = _mulle_objc_method_get_signature( method);
 
    if( ! isSetter)
@@ -222,7 +228,10 @@ static BOOL   useInstanceVariable( struct _MulleObjCKVCInformation *p, Class aCl
 }
 
 
-void   __MulleObjCDivineTakeStoredValueForKeyKVCInformation( struct _MulleObjCKVCInformation *p, Class aClass, NSString *key, unsigned int mask)
+void   __MulleObjCDivineTakeStoredValueForKeyKVCInformation( struct _MulleObjCKVCInformation *p,
+                                                             Class aClass,
+                                                             NSString *key,
+                                                             unsigned int mask)
 {
    NSString                 *methodName;
    NSString                 *underscoreMethodName;
@@ -260,7 +269,10 @@ void   __MulleObjCDivineTakeStoredValueForKeyKVCInformation( struct _MulleObjCKV
 }
 
 
-void   __MulleObjCDivineTakeValueForKeyKVCInformation( struct _MulleObjCKVCInformation *p, Class aClass, NSString *key, unsigned int mask)
+void   __MulleObjCDivineTakeValueForKeyKVCInformation( struct _MulleObjCKVCInformation *p,
+                                                       Class aClass,
+                                                       NSString *key,
+                                                       unsigned int mask)
 {
    NSString   *methodName;
    NSString   *underscoreMethodName;
@@ -301,7 +313,10 @@ void   __MulleObjCDivineTakeValueForKeyKVCInformation( struct _MulleObjCKVCInfor
 /*
  *  GETTER STUFF
  */
-void   __MulleObjCDivineStoredValueForKeyKVCInformation( struct _MulleObjCKVCInformation *p, Class aClass, NSString *key, unsigned int mask)
+void   __MulleObjCDivineStoredValueForKeyKVCInformation( struct _MulleObjCKVCInformation *p,
+                                                         Class aClass,
+                                                         NSString *key,
+                                                         unsigned int mask)
 {
    NSString   *getMethodName;
    NSString   *underscoreGetMethodName;
@@ -355,7 +370,10 @@ void   __MulleObjCDivineStoredValueForKeyKVCInformation( struct _MulleObjCKVCInf
  * Possibility #3 ask the class to fill in KVC value information <<<< this is best!!
  * (see NSObject+NSKVCInformation)
  */
-void   __MulleObjCDivineValueForKeyKVCInformation( struct _MulleObjCKVCInformation *p, Class aClass, NSString *key, unsigned int mask)
+void   __MulleObjCDivineValueForKeyKVCInformation( struct _MulleObjCKVCInformation *p,
+                                                   Class aClass,
+                                                   NSString *key,
+                                                   unsigned int mask)
 {
    NSString   *getMethodName;
    NSString   *underscoreGetMethodName;
@@ -434,7 +452,9 @@ static inline enum _MulleObjCKVCMethodType   _MulleObjCKVCMethodTypeForSelector(
 #endif
 
 
-BOOL  _MulleObjCKVCIsUsingSameMethodOfTypeAsClass( Class aClass, enum _MulleObjCKVCMethodType type, Class referenceClass)
+BOOL  _MulleObjCKVCIsUsingSameMethodOfTypeAsClass( Class aClass,
+                                                   enum _MulleObjCKVCMethodType type,
+                                                   Class referenceClass)
 {
    struct _mulle_objc_method   *methodClass;
    struct _mulle_objc_method   *methodNSObject;
@@ -454,7 +474,8 @@ BOOL  _MulleObjCKVCIsUsingSameMethodOfTypeAsClass( Class aClass, enum _MulleObjC
 }
 
 
-BOOL  _MulleObjCKVCIsUsingDefaultMethodOfType( Class aClass, enum _MulleObjCKVCMethodType type)
+BOOL  _MulleObjCKVCIsUsingDefaultMethodOfType( Class aClass,
+                                               enum _MulleObjCKVCMethodType type)
 {
    return( _MulleObjCKVCIsUsingSameMethodOfTypeAsClass( aClass, type, [NSObject class]));
 }
