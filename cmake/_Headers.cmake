@@ -7,7 +7,7 @@ endif()
 
 set( INCLUDE_DIRS
 src
-) 
+)
 
 set( PRIVATE_HEADERS
 src/import-private.h
@@ -25,5 +25,5 @@ src/NSObject+KeyValueCoding.h
 src/NSObject+_MulleObjCKVCInformation.h
 src/import.h
 src/include.h
-) 
+)
 

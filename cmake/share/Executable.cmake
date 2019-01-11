@@ -18,6 +18,11 @@ endif()
 #
 include( PreExecutable OPTIONAL)
 
+if( NOT EXECUTABLE_SOURCES)
+   message( FATAL_ERROR "There are no sources to compile for executable ${EXECUTABLE_NAME}. Did mulle-sde update run yet ?")
+endif()
+
+
 add_library( "_1_${EXECUTABLE_NAME}" OBJECT
    ${EXECUTABLE_SOURCES}
 )
@@ -30,7 +35,6 @@ set_property( TARGET "_1_${EXECUTABLE_NAME}" PROPERTY CXX_STANDARD 11)
 
 
 if( LINK_PHASE)
-
    add_executable( "${EXECUTABLE_NAME}"
       ${ALL_OBJECT_FILES}
       ${PROJECT_HEADERS}
@@ -56,7 +60,14 @@ if( LINK_PHASE)
    #
    if( NOT EXECUTABLE_LIBRARY_LIST)
       if( ALL_LOAD_DEPENDENCY_LIBRARIES)
-         message( FATAL_ERROR "ALL_LOAD_DEPENDENCY_LIBRARIES \"${ALL_LOAD_DEPENDENCY_LIBRARIES}\" are not linked to ${EXECUTABLE_NAME}")
+         message( FATAL_ERROR "ALL_LOAD_DEPENDENCY_LIBRARIES \
+\"${ALL_LOAD_DEPENDENCY_LIBRARIES}\" are not linked to ${EXECUTABLE_NAME}.
+If these are C libraries, be sure, that they are marked as \"no-all-load\" in
+the sourcetree and inherited sourcetrees.
+
+  mulle-sde dependency unmark <name> all-load
+")
+
       endif()
 
       set( EXECUTABLE_LIBRARY_LIST

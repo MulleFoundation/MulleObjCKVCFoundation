@@ -1,2 +1,0 @@
-MulleObjCKVCFoundation;tar;no-all-load,no-import,no-singlephase,only-standalone;709B9983-75AC-43F8-B0CA-2DE223DEB88B;${MULLE_OBJC_KVC_FOUNDATION_URL:-https://github.com/MulleFoundation/MulleObjCKVCFoundation/archive/${MULLE_OBJC_KVC_FOUNDATION_BRANCH:-latest}.tar.gz};;;;
-mulle-testallocator;tar;no-all-load,no-import,no-singlephase;C48D571B-988D-4FCF-9B30-8C13ABAE3151;${MULLE_TESTALLOCATOR_URL:-https://github.com/mulle-core/mulle-testallocator/archive/${MULLE_TESTALLOCATOR_BRANCH:-latest}.tar.gz};;;;

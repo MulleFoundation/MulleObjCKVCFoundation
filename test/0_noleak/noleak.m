@@ -23,6 +23,7 @@ main()
    {
       MulleObjCHTMLDumpUniverseToTmp();
       MulleObjCDotdumpUniverseToTmp();
+      fprintf( stderr, "universe in bad state\n");
       return( 1);
    }
 #endif
