@@ -76,8 +76,8 @@ static inline void   _MulleObjCKVCInformationDone( struct _MulleObjCKVCInformati
 
 @protocol NSStringFuture
 
-- (NSUInteger) _UTF8StringLength;
-- (NSUInteger) _getUTF8String:(char *) buf
+- (NSUInteger) mulleUTF8StringLength;
+- (NSUInteger) mulleGetUTF8String:(char *) buf
                    bufferSize:(NSUInteger) maxLength;
 @end
 

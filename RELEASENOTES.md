@@ -1,3 +1,8 @@
+## 0.15.0
+
+* Various small improvements
+
+
 ### 0.14.1
 
 * modernized to new mulle-test

@@ -51,7 +51,7 @@ NSString   *NSUndefinedKeyException = @"NSUndefinedKeyException";
 
 @interface NSString( Private) < NSStringFuture>
 
-- (NSUInteger) _UTF8StringLength;
+- (NSUInteger) mulleUTF8StringLength;
 
 @end
 
@@ -127,6 +127,7 @@ enum collection_operator
    sum_opcode
 };
 
+
 static enum collection_operator  operator_opcode( char *s, size_t len)
 {
    if( len < 2 || *s != '@')
@@ -163,7 +164,6 @@ static enum collection_operator  operator_opcode( char *s, size_t len)
 static int  handle_operator( NSString *key, char *s, size_t len, char *rest, size_t rest_len, id *obj)
 {
    enum collection_operator   opcode;
-   NSEnumerator               *rover;
    id                         element;
    NSString                   *restPath;
    id                         previous;
@@ -190,17 +190,16 @@ static int  handle_operator( NSString *key, char *s, size_t len, char *rest, siz
 
    restPath = nil;
    if( rest && rest_len)
-      restPath = [NSString _stringWithUTF8Characters:(void *) rest
+      restPath = [NSString mulleStringWithUTF8Characters:(void *) rest
                                               length:rest_len];
    value    = nil;
    previous = nil;
-   rover    = [*obj objectEnumerator];
 
    switch( (int) opcode)
    {
    case min_opcode :
    case max_opcode :
-      while( element = [rover nextObject])
+      for( element in *obj)
       {
          value = element;
          if( restPath)
@@ -241,7 +240,7 @@ static int  handle_operator( NSString *key, char *s, size_t len, char *rest, siz
       count = 0;
       total = [NSNumber numberWithInt:0];
 
-      while( element = [rover nextObject])
+      for( element in *obj)
       {
          value = element;
          if( restPath)
@@ -275,7 +274,7 @@ static int  handle_operator( NSString *key, char *s, size_t len, char *rest, siz
    struct _MulleObjCCheatingASCIIStringStorage   storage;
 
    s   = (char *) [keyPath UTF8String];
-   len = [keyPath _UTF8StringLength];
+   len = [keyPath mulleUTF8StringLength];
 
    {
       char   tmp[ 0x400];
@@ -386,7 +385,7 @@ static id   traverse_key_path( id obj,
    struct _MulleObjCCheatingASCIIStringStorage   storage;
 
    s   = (char *) [keyPath UTF8String];
-   len = [keyPath _UTF8StringLength];
+   len = [keyPath mulleUTF8StringLength];
 
    {
       char    tmp[ 0x400];
@@ -445,13 +444,11 @@ void    MulleObjCThrowUndefinedKeyException( id self, NSString *key)
 - (NSDictionary *) valuesForKeys:(NSArray *) keys
 {
    NSMutableDictionary   *dictionary;
-   NSEnumerator          *rover;
    NSString              *key;
    id                    value;
 
    dictionary = [NSMutableDictionary dictionary];
-   rover = [keys objectEnumerator];
-   while( key = [rover nextObject])
+   for( key in keys)
    {
       value = [self valueForKey:key];
       if( value)
@@ -464,12 +461,10 @@ void    MulleObjCThrowUndefinedKeyException( id self, NSString *key)
 
 - (void) takeValuesFromDictionary:(NSDictionary *) properties
 {
-   NSEnumerator   *rover;
-   NSString       *key;
-   id             value;
+   NSString   *key;
+   id         value;
 
-   rover = [properties objectEnumerator];
-   while( key = [rover nextObject])
+   for( key in properties)
    {
       value = [properties objectForKey:key];
       [self takeValue:value
