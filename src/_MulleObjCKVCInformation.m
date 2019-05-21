@@ -97,8 +97,8 @@ static NSString  *_stringByCombiningPrefixAndCapitalizedKey( NSString *prefix,
    uint8_t      c;
    NSString     *s;
 
-   prefix_len = [prefix _UTF8StringLength];
-   key_len    = [key _UTF8StringLength];
+   prefix_len = [prefix mulleUTF8StringLength];
+   key_len    = [key mulleUTF8StringLength];
 
    if( key_len == 0)
       [NSException raise:NSInvalidArgumentException
@@ -108,8 +108,8 @@ static NSString  *_stringByCombiningPrefixAndCapitalizedKey( NSString *prefix,
 
    buf = (uint8_t *) mulle_allocator_malloc( allocator, len);
 
-   [prefix _getUTF8Characters:buf];
-   [key _getUTF8Characters:&buf[ prefix_len]];
+   [prefix mulleGetUTF8Characters:buf];
+   [key mulleGetUTF8Characters:&buf[ prefix_len]];
 
    c = buf[ prefix_len];
    if( c >= 'a' && c <= 'z')
@@ -121,7 +121,7 @@ static NSString  *_stringByCombiningPrefixAndCapitalizedKey( NSString *prefix,
    if( tailColon)
       buf[ len - 1] = ':';
 
-   s = [[NSString alloc] _initWithUTF8CharactersNoCopy:buf
+   s = [[NSString alloc] mulleInitWithUTF8CharactersNoCopy:buf
                                                length:len
                                             allocator:allocator];
    return( s);

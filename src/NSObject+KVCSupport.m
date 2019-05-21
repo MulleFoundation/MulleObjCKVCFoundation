@@ -88,7 +88,7 @@ static void  divine_info( NSObject *self,
    cls    = _mulle_objc_object_get_isa( self);
    size   = sizeof( buf);
    s      = buf;
-   length = [key _getUTF8String:s
+   length = [key mulleGetUTF8String:s
                      bufferSize:size];
 
    if( length >= size)
@@ -96,7 +96,7 @@ static void  divine_info( NSObject *self,
       size      = length + 1;
       allocator = _mulle_objc_class_get_kvcinfo_allocator( cls);
       s         = mulle_allocator_malloc( allocator, size);
-      [key _getUTF8String:s
+      [key mulleGetUTF8String:s
                bufferSize:size];
    }
 
