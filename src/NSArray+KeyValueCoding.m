@@ -36,6 +36,7 @@
 #import "NSObject+KeyValueCoding.h"
 
 // other files in this library
+#import "MulleObjCContainerKeyValueCoding.h"
 
 // std-c and other dependencies
 
@@ -44,12 +45,7 @@
 
 - (id) valueForKey:(NSString *) key
 {
-   NSMutableArray   *array;
-   void             *(*get)();
-   void             (*append)();
-   NSUInteger       i, n;
-   id               p;
-   id               value;
+   NSUInteger       n;
 
    NSCParameterAssert( [key isKindOfClass:[NSString class]]);
 
@@ -57,21 +53,14 @@
    if( ! n)
       return( nil);  // i am empty
 
-   array  = [NSMutableArray arrayWithCapacity:n];
+   return( MulleObjCContainerValueForKey( self, key, [NSMutableArray arrayWithCapacity:n]));
+}
 
-   get    = (void *(*)()) [self methodForSelector:@selector( objectAtIndex:)];
-   append = (void (*)()) [array methodForSelector:@selector( addObject:)];
 
-   for( i = 0; i < n; i++)
-   {
-      p     = (id) (*get)( self, @selector( objectAtIndex:), i);
-      value = [p valueForKeyPath:key];
-      if( ! value)
-         value = [NSNull null];
-      (*append)( array, @selector( addObject:), value);
-   }
-
-   return( array);
+- (void) takeValue:(id) value
+            forKey:(NSString *) key
+{
+   MulleObjCContainerTakeValueForKey( self, value, key);
 }
 
 @end

@@ -6,6 +6,7 @@ if( MULLE_TRACE_INCLUDE)
 endif()
 
 set( SOURCES
+src/MulleObjCContainerKeyValueCoding.m
 src/_MulleObjCInstanceVariableAccess.m
 src/_MulleObjCKVCInformation.m
 src/NSArray+KeyValueCoding.m
@@ -17,6 +18,7 @@ src/NSObject+KVCSupport.m
 src/NSObject+KeyValueCoding.m
 src/NSObject+_MulleObjCKVCInformation.m
 src/NSProxy+_MulleObjCKVCInformation.m
+src/NSSet+KeyValueCoding.m
 src/NSSortDescriptor+NSKeyValueCoding.m
 )
 
