@@ -1,3 +1,7 @@
+### 0.15.1
+
+* improved KVC for NSArray and NSSet
+
 ## 0.15.0
 
 * Various small improvements

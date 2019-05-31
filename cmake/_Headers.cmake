@@ -15,6 +15,7 @@ src/include-private.h
 )
 
 set( PUBLIC_HEADERS
+src/MulleObjCContainerKeyValueCoding.h
 src/_MulleObjCInstanceVariableAccess.h
 src/MulleObjCKVCFoundation.h
 src/_MulleObjCKVCInformation.h

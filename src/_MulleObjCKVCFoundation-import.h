@@ -8,6 +8,7 @@
 #ifndef _mulle_objc_kvc_foundation_import_h__
 #define _mulle_objc_kvc_foundation_import_h__
 
+// library: remove with `mark no-header`, rename with `set include`
 # import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>   // MulleObjCStandardFoundation
 
 #endif

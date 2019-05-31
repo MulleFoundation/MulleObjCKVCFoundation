@@ -1,9 +1,9 @@
 //
-//  MulleObjCFoundationKVC.h
-//  MulleObjCStandardFoundation
+//  MulleObjCContainerKeyValueCoding.m
+//  MulleObjCKVCFoundation
 //
-//  Copyright (c) 2016 Nat! - Mulle kybernetiK.
-//  Copyright (c) 2016 Codeon GmbH.
+//  Copyright (c) 2019 Nat! - Mulle kybernetiK.
+//  Copyright (c) 2019 Codeon GmbH.
 //  All rights reserved.
 //
 //
@@ -33,20 +33,46 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 //
-#import "import.h"
+#import "MulleObjCContainerKeyValueCoding.h"
 
-#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0 << 20) | (15 << 8) | 1)
+// other files in this library
 
-// export everything with NS
-#import "NSNumber+MulleObjCKVCArithmetic.h"
-#import "NSObject+KVCSupport.h"
-#import "NSObject+KeyValueCoding.h"
-
-// export everything with MulleObjC
-#import "MulleObjCLoader+MulleObjCKVCFoundation.h"
+// std-c and other dependencies
 
 
-// export nothing with _MulleObjC
-#if MULLE_OBJC_STANDARD_FOUNDATION_VERSION < ((0 << 20) | (14 << 8) | 0)
-# error "MulleObjCStandardFoundation is too old"
-#endif
+id   MulleObjCContainerValueForKey( id self, NSString *key, id container)
+{
+   IMP   append;
+   id    p;
+   id    value;
+   id    null;
+
+   NSCParameterAssert( [key isKindOfClass:[NSString class]]);
+
+   null   = NULL;
+   append = [container methodForSelector:@selector( addObject:)];
+   for( p in self)
+   {
+      value = [p valueForKey:key];
+      if( ! value)
+      {
+         if( ! null)
+            null = [NSNull null];
+         value = null;
+      }
+      MulleObjCCallIMP( append, container, @selector( addObject:), value);
+   }
+
+   return( container);
+}
+
+
+void   MulleObjCContainerTakeValueForKey( id self, id value, NSString *key)
+{
+   id   p;
+
+   for( p in self)
+      [p takeValue:value
+            forKey:key];
+}
+

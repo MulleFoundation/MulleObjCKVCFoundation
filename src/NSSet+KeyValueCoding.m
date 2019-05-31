@@ -1,9 +1,9 @@
 //
-//  MulleObjCFoundationKVC.h
-//  MulleObjCStandardFoundation
+//  NSArray+KeyValueCoding.m
+//  MulleObjCKVCFoundation
 //
-//  Copyright (c) 2016 Nat! - Mulle kybernetiK.
-//  Copyright (c) 2016 Codeon GmbH.
+//  Copyright (c) 2011 Nat! - Mulle kybernetiK.
+//  Copyright (c) 2011 Codeon GmbH.
 //  All rights reserved.
 //
 //
@@ -33,20 +33,34 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 //
-#import "import.h"
-
-#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0 << 20) | (15 << 8) | 1)
-
-// export everything with NS
-#import "NSNumber+MulleObjCKVCArithmetic.h"
-#import "NSObject+KVCSupport.h"
 #import "NSObject+KeyValueCoding.h"
 
-// export everything with MulleObjC
-#import "MulleObjCLoader+MulleObjCKVCFoundation.h"
+// other files in this library
+#import "MulleObjCContainerKeyValueCoding.h"
+
+// std-c and other dependencies
 
 
-// export nothing with _MulleObjC
-#if MULLE_OBJC_STANDARD_FOUNDATION_VERSION < ((0 << 20) | (14 << 8) | 0)
-# error "MulleObjCStandardFoundation is too old"
-#endif
+@implementation NSSet( _KeyValueCoding)
+
+- (id) valueForKey:(NSString *) key
+{
+   NSUInteger       n;
+
+   NSCParameterAssert( [key isKindOfClass:[NSString class]]);
+
+   n = [self count];
+   if( ! n)
+      return( nil);  // i am empty
+
+   return( MulleObjCContainerValueForKey( self, key, [NSMutableSet setWithCapacity:n]));
+}
+
+
+- (void) takeValue:(id) value
+            forKey:(NSString *) key
+{
+   MulleObjCContainerTakeValueForKey( self, value, key);
+}
+
+@end

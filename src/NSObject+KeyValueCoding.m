@@ -284,11 +284,11 @@ static int  handle_operator( NSString *key, char *s, size_t len, char *rest, siz
       if( len >= 0x400 - 1)
          tofree = buf = mulle_malloc( len + 1);
 
-      memcpy( buf, s, len);
+      strcpy( buf, s);
 
-   // this travese_key_path handles operators
+   // this traverse_key_path handles operators
       {
-         sentinel = &buf[ len];
+         sentinel = &buf[ len]; // last cant be dot
          memo     = buf;
          obj      = self;
 
@@ -367,7 +367,8 @@ static id   traverse_key_path( id obj,
    substring     = memo;
    substring_len = s - memo;
 
-   key = _MulleObjCCheatingASCIIStringStorageInit( tmp, substring, substring_len);
+   _MulleObjCCheatingASCIIStringStorageInit( tmp, substring, substring_len);
+
    return( obj);
 }
 
@@ -396,7 +397,7 @@ static id   traverse_key_path( id obj,
          tofree = buf = mulle_malloc( len + 1);
       memcpy( buf, s, len + 1);
 
-      obj  = traverse_key_path( self, buf, len, &storage);
+      obj = traverse_key_path( self, buf, len, &storage);
 
       mulle_free( tofree);
    }

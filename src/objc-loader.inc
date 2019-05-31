@@ -9,4 +9,5 @@
       { @selector( NSObject), @selector( _KeyValueCodingCompatibility) },      // b3a66256;NSObject;a0853a05;_KeyValueCodingCompatibility
       { @selector( NSObject), @selector( _MulleObjCKVCInformation) },      // b3a66256;NSObject;9789c697;_MulleObjCKVCInformation
       { @selector( NSProxy), @selector( _MulleObjCKVCInformation) },      // 9a42ec29;NSProxy;9789c697;_MulleObjCKVCInformation
+      { @selector( NSSet), @selector( _KeyValueCoding) },      // 9f69e3e4;NSSet;c60e3006;_KeyValueCoding
       { @selector( NSSortDescriptor), @selector( NSKeyValueCoding) },      // 38a79ab2;NSSortDescriptor;19d06181;NSKeyValueCoding
