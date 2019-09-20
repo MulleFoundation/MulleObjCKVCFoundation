@@ -39,7 +39,7 @@
 
 // TODO: real caching needed
 //       this needs a rewrite. Keep runtime specific code here
-//       or remove it completely from MulleObJC
+//       or remove it completely from MulleObjC
 enum _MulleObjCKVCMethodType
 {
    _MulleObjCKVCValueForKeyIndex           = 0,
@@ -59,9 +59,11 @@ struct _MulleObjCKVCInformation
 };
 
 
-static inline void   _MulleObjCKVCInformationInitWithKey( struct _MulleObjCKVCInformation *p, id key)
+// TODO: comment, why key needs not be copied/autoreleased
+static inline void   _MulleObjCKVCInformationInitWithKey( struct _MulleObjCKVCInformation *p,
+                                                          id key)
 {
-   p->key            = key;
+   p->key            = key; // [key copy];
    p->implementation = 0;
    p->selector       = 0;
    p->offset         = 0;
@@ -69,8 +71,9 @@ static inline void   _MulleObjCKVCInformationInitWithKey( struct _MulleObjCKVCIn
 }
 
 
-static inline void   _MulleObjCKVCInformationDone( struct _MulleObjCKVCInformation *info)
+static inline void   _MulleObjCKVCInformationDone( struct _MulleObjCKVCInformation *p)
 {
+   // [p->key autorelease];
 }
 
 

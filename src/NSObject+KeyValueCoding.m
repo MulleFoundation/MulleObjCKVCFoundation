@@ -191,7 +191,7 @@ static int  handle_operator( NSString *key, char *s, size_t len, char *rest, siz
    restPath = nil;
    if( rest && rest_len)
       restPath = [NSString mulleStringWithUTF8Characters:(void *) rest
-                                              length:rest_len];
+                                                  length:rest_len];
    value    = nil;
    previous = nil;
 

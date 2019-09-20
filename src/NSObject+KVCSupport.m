@@ -60,8 +60,8 @@ static void  divine_info( NSObject *self,
 
    if( kvcInfo->valueType != _C_ID)
    {
-      assert( (info->valueType == kvcInfo->valueType) || (info->valueType == _C_ID));
-      info->valueType = kvcInfo->valueType;
+      // assert( (info->valueType == kvcInfo->valueType) || (info->valueType == _C_ID));
+      info->valueType[ type] = kvcInfo->valueType;
    }
 
    info->methodid[ type]       = (mulle_objc_methodid_t) kvcInfo->selector;
@@ -76,14 +76,14 @@ static void  divine_info( NSObject *self,
                      forKey:(id <NSStringFuture>) key
                  methodType:(enum _MulleObjCKVCMethodType) type
 {
-   NSUInteger                   length;
-   NSUInteger                   size;
-   struct mulle_allocator       *allocator;
-   struct _mulle_objc_kvcinfo   *info;
-   struct _mulle_objc_class     *cls;
-   unsigned int                 i;
    auto char                    buf[ 256];
    char                         *s;
+   NSUInteger                   length;
+   NSUInteger                   size;
+   struct _mulle_objc_class     *cls;
+   struct _mulle_objc_kvcinfo   *info;
+   struct mulle_allocator       *allocator;
+   unsigned int                 i;
 
    cls    = _mulle_objc_object_get_isa( self);
    size   = sizeof( buf);
@@ -112,7 +112,7 @@ static void  divine_info( NSObject *self,
          kvcInfo->offset         = (int) info->offset;
          kvcInfo->selector       = (SEL) info->methodid[ type];
          kvcInfo->implementation = (IMP) info->implementation[ type];
-         kvcInfo->valueType      = info->valueType;
+         kvcInfo->valueType      = info->valueType[ type];
          return;
       }
 
@@ -128,11 +128,11 @@ static void  divine_info( NSObject *self,
    if( s != buf)
       mulle_allocator_free( allocator, buf);
 
-   assert( info->valueType == _C_ID);
+   assert( info->valueType[ type] == _C_ID);
 
    //
    // ok, divine the info for all 4 cases and put it into the cache
-   // divine the one we want last
+   // divine the one we want last to pass it back
    //
    for( i = _MulleObjCKVCValueForKeyIndex; i <= _MulleObjCKVCTakeStoredValueForKeyIndex; i++)
    {
@@ -143,7 +143,6 @@ static void  divine_info( NSObject *self,
    }
 
    divine_info( self, kvcInfo, key, info, type);
-
    _mulle_objc_class_set_kvcinfo( cls, info);
 }
 

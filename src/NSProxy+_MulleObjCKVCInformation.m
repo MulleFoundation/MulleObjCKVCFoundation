@@ -44,6 +44,11 @@
 // std-c and other dependencies
 
 
+#ifdef DEBUG
+//# define DEBUG_VERBOSE
+#endif
+
+
 @implementation NSProxy ( _MulleObjCKVCInformation)
 
 - (void) _divineKVCInformation:(struct _MulleObjCKVCInformation *) info
@@ -56,18 +61,30 @@
    switch( type)
    {
    case _MulleObjCKVCValueForKeyIndex :
+#ifdef DEBUG_VERBOSE
+      fprintf( stderr, "Divine ValueForKey: ");
+#endif
       __MulleObjCDivineValueForKeyKVCInformation( info, cls, key, _MulleObjCKVCGenericMethodOnly);
       break;
 
    case _MulleObjCKVCStoredValueForKeyIndex :
+#ifdef DEBUG_VERBOSE
+      fprintf( stderr, "Divine StoredValueForKey: ");
+#endif
       __MulleObjCDivineStoredValueForKeyKVCInformation( info, cls, key, _MulleObjCKVCGenericMethodOnly);
       break;
 
    case _MulleObjCKVCTakeValueForKeyIndex :
+#ifdef DEBUG_VERBOSE
+      fprintf( stderr, "Divine TakeValueForKey: ");
+#endif
       __MulleObjCDivineTakeValueForKeyKVCInformation( info, cls, key, _MulleObjCKVCGenericMethodOnly);
       break;
 
    case _MulleObjCKVCTakeStoredValueForKeyIndex :
+#ifdef DEBUG_VERBOSE
+      fprintf( stderr, "Divine TakeStoredValueForKey: ");
+#endif
       __MulleObjCDivineTakeStoredValueForKeyKVCInformation( info, cls, key, _MulleObjCKVCGenericMethodOnly);
       break;
    }
