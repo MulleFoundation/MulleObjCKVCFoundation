@@ -44,6 +44,11 @@
 #include <ctype.h>
 
 
+#ifdef DEBUG
+//# define DEBUG_VERBOSE
+#endif
+
+
 @interface NSString( Private) < NSStringFuture>
 @end
 
@@ -137,19 +142,6 @@ static NSString  *stringByCombiningPrefixAndCapitalizedKey( NSString *prefix,
 }
 
 
-// TODO: should optionally check if protected or private and issue a warning in
-//       debug mode on access for protected and abort (?) on private. Let it
-//       slide for release. Need to know caller for that, so here just get
-//       information and store it somewhere
-
-static void   handle_ivar( struct _MulleObjCKVCInformation *p, struct _mulle_objc_ivar *ivar)
-{
-   p->offset    = _mulle_objc_ivar_get_offset( ivar);
-   p->valueType = _mulle_objc_ivar_get_signature( ivar)[ 0];
-
-   NSCParameterAssert( isSupportedObjCType( p->valueType));
-}
-
 
 void   _MulleObjCKVCInformationUseUnboundKeyMethod( struct _MulleObjCKVCInformation *p,
                                                     Class aClass,
@@ -204,8 +196,11 @@ static BOOL   useInstanceMethod( struct _MulleObjCKVCInformation *p,
    p->selector       = sel;
    p->implementation = (IMP) _mulle_objc_method_get_implementation( method);
 
-   NSCParameterAssert( isSupportedObjCType( p->valueType));
+#ifdef DEBUG_VERBOSE
+   fprintf( stderr, "method 0x%08x\n", p->selector);
+#endif
 
+   NSCParameterAssert( isSupportedObjCType( p->valueType));
    return( YES);
 }
 
@@ -223,7 +218,19 @@ static BOOL   useInstanceVariable( struct _MulleObjCKVCInformation *p, Class aCl
    if( ! ivar)
       return( NO);
 
-   handle_ivar( p, ivar);
+//
+// TODO: should optionally check if protected or private and issue a warning in
+//       debug mode on access for protected and abort (?) on private. Let it
+//       slide for release. Need to know caller for that, so here just get
+//       information and store it somewhere
+//
+   p->offset    = _mulle_objc_ivar_get_offset( ivar);
+   p->valueType = _mulle_objc_ivar_get_signature( ivar)[ 0];
+
+#ifdef DEBUG_VERBOSE
+   fprintf( stderr, "ivar %ld type:%c\n", (long) p->offset, p->valueType);
+#endif
+   NSCParameterAssert( isSupportedObjCType( p->valueType));
    return( YES);
 }
 

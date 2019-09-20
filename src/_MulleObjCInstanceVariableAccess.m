@@ -62,18 +62,18 @@ void   _MulleObjCSetInstanceVariableForType( id p, unsigned int offset, id value
       switch( valueType)
       {
 #ifdef _C_BOOL
-      case _C_BOOL : *(_Bool *)          dst = 0; return;
+      case _C_BOOL     : *(_Bool *)          dst = 0; return;
 #endif
-      case _C_CHR  : *(char *)           dst = 0; return;
-      case _C_UCHR : *(unsigned char *)  dst = 0; return;
-      case _C_SHT  : *(short *)          dst = 0; return;
-      case _C_USHT : *(unsigned short *) dst = 0; return;
+      case _C_CHR      : *(char *)           dst = 0; return;
+      case _C_UCHR     : *(unsigned char *)  dst = 0; return;
+      case _C_SHT      : *(short *)          dst = 0; return;
+      case _C_USHT     : *(unsigned short *) dst = 0; return;
 
-      case _C_INT  : *(int *)           dst = 0; return;
-      case _C_UINT : *(unsigned int *)  dst = 0; return;
-      case _C_LNG  : *(long *)          dst = 0; return;
-      case _C_ULNG : *(unsigned long *) dst = 0; return;
-      case _C_SEL  : *(SEL *)           dst = 0; return;
+      case _C_INT      : *(int *)            dst = 0; return;
+      case _C_UINT     : *(unsigned int *)   dst = 0; return;
+      case _C_LNG      : *(long *)           dst = 0; return;
+      case _C_ULNG     : *(unsigned long *)  dst = 0; return;
+      case _C_SEL      : *(SEL *)            dst = 0; return;
 
       case _C_LNG_LNG  : *(long long *)          dst = 0; return;
       case _C_ULNG_LNG : *(unsigned long long *) dst = 0; return;

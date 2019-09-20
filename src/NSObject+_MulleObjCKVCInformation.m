@@ -41,6 +41,10 @@
 // std-c and other dependencies
 
 
+#ifdef DEBUG
+//# define DEBUG_VERBOSE
+#endif
+
 
 @implementation NSObject ( _MulleObjCKVCInformation)
 
@@ -100,18 +104,30 @@ static inline unsigned int   kvcMaskForMethodOfType( Class cls, enum _MulleObjCK
    switch( type)
    {
    case _MulleObjCKVCValueForKeyIndex :
+#ifdef DEBUG_VERBOSE
+      fprintf( stderr, "Divine ValueForKey: ");
+#endif
       __MulleObjCDivineValueForKeyKVCInformation( info, cls, key, mask);
       break;
 
    case _MulleObjCKVCTakeValueForKeyIndex :
+#ifdef DEBUG_VERBOSE
+      fprintf( stderr, "Divine TakeValueForKey: ");
+#endif
       __MulleObjCDivineTakeValueForKeyKVCInformation( info, cls, key, mask);
       break;
 
    case _MulleObjCKVCStoredValueForKeyIndex :
+#ifdef DEBUG_VERBOSE
+      fprintf( stderr, "Divine StoredValueForKey: ");
+#endif
       __MulleObjCDivineStoredValueForKeyKVCInformation( info, cls, key, mask);
       break;
 
    case _MulleObjCKVCTakeStoredValueForKeyIndex :
+#ifdef DEBUG_VERBOSE
+      fprintf( stderr, "Divine TakeStoredValueForKey: ");
+#endif
       __MulleObjCDivineTakeStoredValueForKeyKVCInformation( info, cls, key, mask);
       break;
    }

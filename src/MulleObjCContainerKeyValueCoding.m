@@ -49,6 +49,9 @@ id   MulleObjCContainerValueForKey( id self, NSString *key, id container)
 
    NSCParameterAssert( [key isKindOfClass:[NSString class]]);
 
+   if( ! container)
+      return( container);
+
    null   = NULL;
    append = [container methodForSelector:@selector( addObject:)];
    for( p in self)
