@@ -1,3 +1,9 @@
+## 0.16.0
+
+* MulleObjCContainerValueForKey can now accept nil for container
+* fix problem with wrongly indexed valueType for store accessors
+
+
 ### 0.15.1
 
 * improved KVC for NSArray and NSSet

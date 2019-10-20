@@ -10,10 +10,11 @@
 #ifndef _mulle_objc_kvc_foundation_import_h__
 #define _mulle_objc_kvc_foundation_import_h__
 
-#include "_MulleObjCKVCFoundation-include.h"
-
 // remove with `mulle-sourcetree mark MulleObjCStandardFoundation no-header`
 // rename with `mulle-sourcetree mark MulleObjCStandardFoundation set include whatever.h`
 # import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>   // MulleObjCStandardFoundation
+
+#include "_MulleObjCKVCFoundation-include.h"
+
 
 #endif
