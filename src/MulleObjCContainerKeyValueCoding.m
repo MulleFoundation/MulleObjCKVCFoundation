@@ -63,7 +63,7 @@ id   MulleObjCContainerValueForKey( id self, NSString *key, id container)
             null = [NSNull null];
          value = null;
       }
-      MulleObjCCallIMP( append, container, @selector( addObject:), value);
+      MulleObjCIMPCall( append, container, @selector( addObject:), value);
    }
 
    return( container);

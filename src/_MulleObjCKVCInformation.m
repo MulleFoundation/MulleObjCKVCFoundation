@@ -58,9 +58,7 @@ static BOOL  isSupportedObjCType( char c)
 {
    switch( c)
    {
-#ifdef _C_BOOL
    case _C_BOOL :
-#endif
    case _C_CHR  :
    case _C_UCHR :
    case _C_SHT  :
@@ -500,9 +498,7 @@ void  __MulleObjCSetObjectValueWithAccessorForType( id obj, SEL sel, id value, I
    {
       switch( valueType)
       {
-#ifdef _C_BOOL
       case _C_BOOL     :
-#endif
       case _C_CHR      :
       case _C_UCHR     :
       case _C_SHT      :
@@ -510,16 +506,16 @@ void  __MulleObjCSetObjectValueWithAccessorForType( id obj, SEL sel, id value, I
 
       case _C_INT      :
       case _C_SEL      :
-      case _C_UINT     : MulleObjCCallIMP( imp, obj, sel, 0); return;
+      case _C_UINT     : MulleObjCIMPCall( imp, obj, sel, 0); return;
 
       case _C_LNG      :
-      case _C_ULNG     : MulleObjCCallIMPWithUnsignedLong( imp, obj, sel, 0); return;
+      case _C_ULNG     : MulleObjCIMPCallWithUnsignedLong( imp, obj, sel, 0); return;
       case _C_LNG_LNG  :
-      case _C_ULNG_LNG : MulleObjCCallIMPWithUnsignedLongLong( imp, obj, sel, 0); return;
+      case _C_ULNG_LNG : MulleObjCIMPCallWithUnsignedLongLong( imp, obj, sel, 0); return;
 
-      case _C_FLT      : MulleObjCCallIMPWithFloat( imp, obj, sel, 0); return;
-      case _C_DBL      : MulleObjCCallIMPWithDouble( imp, obj, sel, 0); return;
-      case _C_LNG_DBL  : MulleObjCCallIMPWithLongDouble( imp, obj, sel, 0); return;
+      case _C_FLT      : MulleObjCIMPCallWithFloat( imp, obj, sel, 0); return;
+      case _C_DBL      : MulleObjCIMPCallWithDouble( imp, obj, sel, 0); return;
+      case _C_LNG_DBL  : MulleObjCIMPCallWithLongDouble( imp, obj, sel, 0); return;
       default         :
          [NSException raise:NSInvalidArgumentException
                      format:@"%s failed to handle \"%c\" for -[%@ %@ %@]. I don't know what to do with it",
@@ -531,9 +527,7 @@ void  __MulleObjCSetObjectValueWithAccessorForType( id obj, SEL sel, id value, I
 
    switch( valueType)
    {
-#ifdef _C_BOOL
    case _C_BOOL     : parameter = [value boolValue]; break;
-#endif
    case _C_CHR      : parameter = [value charValue]; break;
    case _C_UCHR     : parameter = [value unsignedCharValue]; break;
    case _C_SHT      : parameter = [value shortValue]; break;
@@ -543,13 +537,13 @@ void  __MulleObjCSetObjectValueWithAccessorForType( id obj, SEL sel, id value, I
    case _C_SEL      :
    case _C_UINT     : parameter = [value unsignedIntValue]; break;
 
-   case _C_LNG      : MulleObjCCallIMPWithLong( imp, obj, sel, [value longValue]); return;
-   case _C_ULNG     : MulleObjCCallIMPWithUnsignedLong( imp, obj, sel, [value unsignedLongValue]); return;
-   case _C_LNG_LNG  : MulleObjCCallIMPWithLongLong( imp, obj, sel, [value longLongValue]); return;
-   case _C_ULNG_LNG : MulleObjCCallIMPWithUnsignedLongLong( imp, obj, sel, [value unsignedLongLongValue]); return;
-   case _C_FLT      : MulleObjCCallIMPWithFloat( imp, obj, sel, [value floatValue]); return;
-   case _C_DBL      : MulleObjCCallIMPWithDouble( imp, obj, sel, [value doubleValue]); return;
-   case _C_LNG_DBL  : MulleObjCCallIMPWithLongDouble( imp, obj, sel, [value longDoubleValue]); return;
+   case _C_LNG      : MulleObjCIMPCallWithLong( imp, obj, sel, [value longValue]); return;
+   case _C_ULNG     : MulleObjCIMPCallWithUnsignedLong( imp, obj, sel, [value unsignedLongValue]); return;
+   case _C_LNG_LNG  : MulleObjCIMPCallWithLongLong( imp, obj, sel, [value longLongValue]); return;
+   case _C_ULNG_LNG : MulleObjCIMPCallWithUnsignedLongLong( imp, obj, sel, [value unsignedLongLongValue]); return;
+   case _C_FLT      : MulleObjCIMPCallWithFloat( imp, obj, sel, [value floatValue]); return;
+   case _C_DBL      : MulleObjCIMPCallWithDouble( imp, obj, sel, [value doubleValue]); return;
+   case _C_LNG_DBL  : MulleObjCIMPCallWithLongDouble( imp, obj, sel, [value longDoubleValue]); return;
       break;
 
    default      :
@@ -558,7 +552,7 @@ void  __MulleObjCSetObjectValueWithAccessorForType( id obj, SEL sel, id value, I
           __PRETTY_FUNCTION__, valueType, obj, NSStringFromSelector( sel), value];
    }
 
-   MulleObjCCallIMP( imp, obj, sel, (void *) parameter);
+   MulleObjCIMPCall( imp, obj, sel, (void *) parameter);
    return;
 }
 
@@ -568,26 +562,24 @@ id   __MulleObjCGetObjectValueWithAccessorForType( id obj, SEL sel, IMP imp, cha
    // so far we just do numbers
    switch( valueType)
    {
-#ifdef _C_BOOL
-   case _C_BOOL      : return( [NSNumber numberWithBool:(_Bool) (intptr_t) MulleObjCCallIMP0( imp, obj, sel)]);
-#endif
-   case _C_CHR       : return( [NSNumber numberWithChar:(char) (intptr_t) MulleObjCCallIMP0( imp, obj, sel)]);
-   case _C_UCHR      : return( [NSNumber numberWithUnsignedChar:(unsigned char) (uintptr_t) MulleObjCCallIMP0( imp, obj, sel)]);
-   case _C_SHT       : return( [NSNumber numberWithShort:(short) (intptr_t) MulleObjCCallIMP0( imp, obj, sel)]);
-   case _C_USHT      : return( [NSNumber numberWithUnsignedShort:(unsigned short) (uintptr_t) MulleObjCCallIMP0( imp, obj, sel)]);
+   case _C_BOOL      : return( [NSNumber numberWithBool:(BOOL) (intptr_t) MulleObjCIMPCall0( imp, obj, sel)]);
+   case _C_CHR       : return( [NSNumber numberWithChar:(char) (intptr_t) MulleObjCIMPCall0( imp, obj, sel)]);
+   case _C_UCHR      : return( [NSNumber numberWithUnsignedChar:(unsigned char) (uintptr_t) MulleObjCIMPCall0( imp, obj, sel)]);
+   case _C_SHT       : return( [NSNumber numberWithShort:(short) (intptr_t) MulleObjCIMPCall0( imp, obj, sel)]);
+   case _C_USHT      : return( [NSNumber numberWithUnsignedShort:(unsigned short) (uintptr_t) MulleObjCIMPCall0( imp, obj, sel)]);
 
-   case _C_INT       : return( [NSNumber numberWithInt:(int) (intptr_t) MulleObjCCallIMP0( imp, obj, sel)]);
+   case _C_INT       : return( [NSNumber numberWithInt:(int) (intptr_t) MulleObjCIMPCall0( imp, obj, sel)]);
    case _C_SEL       :
-   case _C_UINT      : return( [NSNumber numberWithUnsignedInt:(unsigned int) (uintptr_t) MulleObjCCallIMP0( imp, obj, sel)]);
+   case _C_UINT      : return( [NSNumber numberWithUnsignedInt:(unsigned int) (uintptr_t) MulleObjCIMPCall0( imp, obj, sel)]);
 
-   case _C_LNG       : return( [NSNumber numberWithLong:MulleObjCCallIMP0ReturningLong( imp, obj, sel)]);
-   case _C_ULNG      : return( [NSNumber numberWithUnsignedLong:MulleObjCCallIMP0ReturningUnsignedLong( imp, obj, sel)]);
-   case _C_LNG_LNG   : return( [NSNumber numberWithLongLong:MulleObjCCallIMP0ReturningLongLong( imp, obj, sel)]);
+   case _C_LNG       : return( [NSNumber numberWithLong:MulleObjCIMPCall0ReturningLong( imp, obj, sel)]);
+   case _C_ULNG      : return( [NSNumber numberWithUnsignedLong:MulleObjCIMPCall0ReturningUnsignedLong( imp, obj, sel)]);
+   case _C_LNG_LNG   : return( [NSNumber numberWithLongLong:MulleObjCIMPCall0ReturningLongLong( imp, obj, sel)]);
 
-   case _C_ULNG_LNG  : return( [NSNumber numberWithUnsignedLongLong:MulleObjCCallIMP0ReturningUnsignedLongLong( imp, obj, sel)]);
-   case _C_FLT       : return( [NSNumber numberWithFloat:MulleObjCCallIMP0ReturningFloat( imp, obj, sel)]);
-   case _C_DBL       : return( [NSNumber numberWithDouble:MulleObjCCallIMP0ReturningDouble( imp, obj, sel)]);
-   case _C_LNG_DBL   : return( [NSNumber numberWithLongDouble:MulleObjCCallIMP0ReturningLongDouble( imp, obj, sel)]);
+   case _C_ULNG_LNG  : return( [NSNumber numberWithUnsignedLongLong:MulleObjCIMPCall0ReturningUnsignedLongLong( imp, obj, sel)]);
+   case _C_FLT       : return( [NSNumber numberWithFloat:MulleObjCIMPCall0ReturningFloat( imp, obj, sel)]);
+   case _C_DBL       : return( [NSNumber numberWithDouble:MulleObjCIMPCall0ReturningDouble( imp, obj, sel)]);
+   case _C_LNG_DBL   : return( [NSNumber numberWithLongDouble:MulleObjCIMPCall0ReturningLongDouble( imp, obj, sel)]);
 
    default         :
       [NSException raise:NSInvalidArgumentException
