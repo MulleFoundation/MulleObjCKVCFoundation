@@ -48,9 +48,7 @@ static int  simplify_type_for_arithmetic( int type)
 {
    switch( type)
    {
-#ifdef _C_BOOL
    case _C_BOOL :
-#endif
    case _C_CHR  :
    case _C_SHT  :
    case _C_INT  :

@@ -41,8 +41,8 @@
 #import "NSNumber+MulleObjCKVCArithmetic.h"
 
 // std-c and other dependencies
-#import <MulleObjCStandardFoundation/private/_MulleObjCASCIIString.h>
-#import <MulleObjCStandardFoundation/private/_MulleObjCCheatingASCIIString.h>
+#import <MulleObjCValueFoundation/_MulleObjCASCIIString.h>
+#import <MulleObjCValueFoundation/_MulleObjCCheatingASCIIString.h>
 
 
 NSString   *NSUndefinedKeyException = @"NSUndefinedKeyException";
@@ -408,23 +408,18 @@ static id   traverse_key_path( id obj,
 }
 
 
-void    MulleObjCThrowUndefinedKeyException( id self, NSString *key)
+- (id) handleQueryWithUnboundKey:(NSString *) key;
 {
    [NSException raise:NSUndefinedKeyException
                format:@"%@ undefined on %@", key, self];
-}
-
-
-- (id) handleQueryWithUnboundKey:(NSString *) key;
-{
-   MulleObjCThrowUndefinedKeyException( self, key);
    return( nil);
 }
 
 
 - (id) valueForUndefinedKey:(NSString *) key
 {
-   MulleObjCThrowUndefinedKeyException( self, key);
+   [NSException raise:NSUndefinedKeyException
+               format:@"%@ undefined on %@", key, self];
    return( nil);
 }
 

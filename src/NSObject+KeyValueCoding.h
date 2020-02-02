@@ -92,5 +92,3 @@ extern NSString   *NSUndefinedKeyException;
 
 @end
 
-
-void    MulleObjCThrowUndefinedKeyException( id self, NSString *key);
