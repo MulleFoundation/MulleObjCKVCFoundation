@@ -17,6 +17,7 @@ old/
 src.old/
 tmp/
 xcuserdata/
+OldCacheCode/
 
 environment-host-*.sh
 environment-user-*.sh
