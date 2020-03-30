@@ -8,6 +8,7 @@ endif()
 set( SOURCES
 src/MulleObjCContainerKeyValueCoding.m
 src/_MulleObjCInstanceVariableAccess.m
+src/MulleObjCKVCFoundation-standalone.m
 src/_MulleObjCKVCInformation.m
 src/NSArray+KeyValueCoding.m
 src/NSArray+MulleObjCKVCArithmetic.m
@@ -24,8 +25,4 @@ src/NSSortDescriptor+NSKeyValueCoding.m
 
 set( STAGE2_SOURCES
 src/MulleObjCLoader+MulleObjCKVCFoundation.m
-)
-
-set( STANDALONE_SOURCES
-src/MulleObjCKVCFoundation-standalone.m
 )

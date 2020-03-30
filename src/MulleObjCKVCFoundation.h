@@ -35,7 +35,7 @@
 //
 #import "import.h"
 
-#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0 << 20) | (16 << 8) | 0)
+#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0 << 20) | (17 << 8) | 0)
 
 // export everything with NS
 #import "NSNumber+MulleObjCKVCArithmetic.h"
