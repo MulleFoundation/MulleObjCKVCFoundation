@@ -43,9 +43,6 @@ add_codeon_to_apt_sources()
 }
 
 
-
-
-
 r_get_linux_release()
 {
    RVAL="`lsb_release -c -s`"
@@ -120,6 +117,8 @@ main()
 
    r_get_debname
    debname="${RVAL}"
+
+   echo "DEBIAN_REPOSITORY=\"${debname}\"" 2>&1
 
    r_get_hostname
    MULLE_HOSTNAME="${RVAL}"
