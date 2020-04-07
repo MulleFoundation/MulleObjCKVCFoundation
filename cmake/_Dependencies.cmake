@@ -69,7 +69,7 @@ if( NOT MULLE_OBJC_STANDARD_FOUNDATION_LIBRARY)
          endif()
       endforeach()
       #
-      # Search for "objc-loader.inc" in include directory.
+      # Search for "MulleObjCLoader+<name>.h" in include directory.
       # Disable with: `mulle-sourcetree mark MulleObjCStandardFoundation no-cmakeloader`
       #
       if( NOT NO_INHERIT_OBJC_LOADERS)
