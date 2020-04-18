@@ -31,7 +31,7 @@ if( STANDALONE)
    endif()
 
    if( NOT STANDALONE_DEFINITIONS)
-      set( STANDALONE_DEFINITIONS ${mulle_objc_kvc_foundation_DEFINITIONS})
+      set( STANDALONE_DEFINITIONS ${MULLE_OBJC_KVC_FOUNDATION_DEFINITIONS})
    endif()
 
    #
