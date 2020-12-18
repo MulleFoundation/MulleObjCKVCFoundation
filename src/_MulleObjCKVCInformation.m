@@ -88,59 +88,6 @@ static BOOL  isSupportedObjCType( char c)
 #endif
 
 
-static NSString  *_stringByCombiningPrefixAndCapitalizedKey( NSString *prefix,
-                                                             NSString *key,
-                                                             BOOL     tailColon,
-                                                             struct mulle_allocator *allocator)
-{
-   NSUInteger   prefix_len;
-   NSUInteger   key_len;
-   NSUInteger   len;
-   uint8_t      *buf;
-   uint8_t      c;
-   NSString     *s;
-
-   prefix_len = [prefix mulleUTF8StringLength];
-   key_len    = [key mulleUTF8StringLength];
-
-   if( key_len == 0)
-      [NSException raise:NSInvalidArgumentException
-                  format:@"Key must not be nil or the empty string"];
-
-   len = key_len + prefix_len + (tailColon == YES);
-
-   buf = (uint8_t *) mulle_allocator_malloc( allocator, len);
-
-   [prefix mulleGetUTF8Characters:buf];
-   [key mulleGetUTF8Characters:&buf[ prefix_len]];
-
-   c = buf[ prefix_len];
-   if( c >= 'a' && c <= 'z')
-   {
-      c -= 'a' - 'A';
-      buf[ prefix_len] = c;
-   }
-
-   if( tailColon)
-      buf[ len - 1] = ':';
-
-   s = [[NSString alloc] mulleInitWithUTF8CharactersNoCopy:buf
-                                               length:len
-                                            allocator:allocator];
-   return( s);
-}
-
-
-static NSString  *stringByCombiningPrefixAndCapitalizedKey( NSString *prefix,
-                                                            NSString *key,
-                                                            BOOL     tailingColon,
-                                                            struct mulle_allocator *allocator)
-{
-   return( [_stringByCombiningPrefixAndCapitalizedKey( prefix, key, tailingColon, allocator) autorelease]);
-}
-
-
-
 void   _MulleObjCKVCInformationUseUnboundKeyMethod( struct _MulleObjCKVCInformation *p,
                                                     Class aClass,
                                                     BOOL isSetter)
@@ -238,15 +185,13 @@ void   __MulleObjCDivineTakeStoredValueForKeyKVCInformation( struct _MulleObjCKV
                                                              NSString *key,
                                                              unsigned int mask)
 {
-   NSString                 *methodName;
-   NSString                 *underscoreMethodName;
-   NSString                 *underscoreName;
-   struct mulle_allocator   *allocator;
+   NSString   *methodName;
+   NSString   *underscoreMethodName;
+   NSString   *underscoreName;
 
    _MulleObjCKVCInformationInitWithKey( p, key);
 
-   allocator            = MulleObjCClassGetAllocator( aClass);
-   methodName           = stringByCombiningPrefixAndCapitalizedKey( @"set", key, YES, allocator);
+   methodName           = MulleObjCStringByCombiningPrefixAndCapitalizedKey( @"set", key, YES);
    underscoreMethodName = [@"_" stringByAppendingString:methodName];
 
    // check for _setKey
@@ -285,7 +230,7 @@ void   __MulleObjCDivineTakeValueForKeyKVCInformation( struct _MulleObjCKVCInfor
 
    _MulleObjCKVCInformationInitWithKey( p, key);
 
-   methodName = stringByCombiningPrefixAndCapitalizedKey( @"set", key, YES, MulleObjCClassGetAllocator( aClass));
+   methodName = MulleObjCStringByCombiningPrefixAndCapitalizedKey( @"set", key, YES);
 
    // check for _set<Key>:
    if( mask & _MulleObjCKVCMethodBit)  // sic!
@@ -329,7 +274,7 @@ void   __MulleObjCDivineStoredValueForKeyKVCInformation( struct _MulleObjCKVCInf
 
    _MulleObjCKVCInformationInitWithKey( p, key);
 
-   getMethodName = stringByCombiningPrefixAndCapitalizedKey( @"get", key, NO, MulleObjCClassGetAllocator( aClass));
+   getMethodName = MulleObjCStringByCombiningPrefixAndCapitalizedKey( @"get", key, NO);
 
    underscoreGetMethodName = [@"_" stringByAppendingString:getMethodName];
    if( mask & _MulleObjCKVCUnderscoreGetMethodBit)
@@ -387,7 +332,7 @@ void   __MulleObjCDivineValueForKeyKVCInformation( struct _MulleObjCKVCInformati
    _MulleObjCKVCInformationInitWithKey( p, key);
 
    //   if( _MulleObjCKVCIsUsingDefaultMethodOfType( aClass, _MulleObjCKVCValueForKeyIndex))
-   getMethodName = stringByCombiningPrefixAndCapitalizedKey( @"get", key, NO, MulleObjCClassGetAllocator( aClass));
+   getMethodName = MulleObjCStringByCombiningPrefixAndCapitalizedKey( @"get", key, NO);
 
    if( mask & _MulleObjCKVCGetMethodBit)
       if( useInstanceMethod( p, aClass, getMethodName, NO))
