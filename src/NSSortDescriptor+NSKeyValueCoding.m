@@ -56,8 +56,8 @@
    if( aValue == bValue)
       return( NSOrderedSame);
 
-   result = (NSComparisonResult) [aValue performSelector:_selector
-                                              withObject:bValue];
+   result = (NSComparisonResult) (intptr_t) [aValue performSelector:_selector
+                                                         withObject:bValue];
    return( _ascending ? result : -result);
 }
 
