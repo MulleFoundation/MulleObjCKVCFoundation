@@ -1,0 +1,16 @@
+{
+   "name" : "MulleObjCKVCFoundation",
+   "version" : "0.18.0",
+   "description" : "🔑 Key-Value-Coding based on MulleObjCStandardFoundation",
+   "homepage" : "https://github.com/MulleFoundation/MulleObjCKVCFoundation",
+   "bugs" : "https://github.com/MulleFoundation/MulleObjCKVCFoundation/issues",
+   "keywords" : [],
+   "license" : "UNLICENSED",
+   "repository" : {
+      "type" : "git",
+      "url" : "MulleFoundation/MulleObjCKVCFoundation"
+   },
+   "dependencies" : {
+      "MulleObjCStandardFoundation" : "MulleFoundation/MulleObjCStandardFoundation"
+   }
+}
