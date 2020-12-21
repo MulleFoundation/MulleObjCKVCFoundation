@@ -1,3 +1,8 @@
+## 0.18.0
+
+* ``_stringByCombiningPrefixAndCapitalizedKey`` umbenannt in `MulleObjCStringByCombiningPrefixAndCapitalizedKey` und in andere library verschoben
+
+
 ### 0.17.2
 
 * remove duplicate objc-loader.inc
