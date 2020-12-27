@@ -16,15 +16,10 @@
 //    remove:             `mulle-sourcetree mark MulleObjCStandardFoundation no-header`
 //    rename:             `mulle-sde dependency|library set MulleObjCStandardFoundation include whatever.h`
 //    toggle #import:     `mulle-sourcetree mark MulleObjCStandardFoundation [no-]import`
-//    toggle localheader: `mulle-sourcetree mark MulleObjCStandardFoundation [no-]localheader`
 //    toggle public:      `mulle-sourcetree mark MulleObjCStandardFoundation [no-]public`
 //    toggle optional:    `mulle-sourcetree mark MulleObjCStandardFoundation [no-]require`
 //    remove for os:      `mulle-sourcetree mark MulleObjCStandardFoundation no-os-<osname>`
-# if defined( __has_include) && __has_include("MulleObjCStandardFoundation.h")
-#   import "MulleObjCStandardFoundation.h"   // MulleObjCStandardFoundation
-# else
-#   import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>   // MulleObjCStandardFoundation
-# endif
+# import <MulleObjCStandardFoundation/MulleObjCStandardFoundation.h>   // MulleObjCStandardFoundation
 
 #ifdef __has_include
 # if __has_include( "_MulleObjCKVCFoundation-include.h")
