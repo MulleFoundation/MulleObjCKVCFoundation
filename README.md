@@ -6,12 +6,33 @@ Adds key-value coding to the class system. This is a runtime interpretation
 scheme, so that you can write `[foo valueForKey:@"bar.baz"]` as a short-cut
 for `[[foo bar] baz]` for example.
 
+This adds a lot of methods to NSObject, NSArray, NSSet et al. via categories.
 
+### You are here
 
-Build Status | Release Version
--------------|-----------------------------------
-[![Build Status](https://travis-ci.org/MulleFoundation/MulleObjCKVCFoundation.svg?branch=release)](https://travis-ci.org/MulleFoundation/MulleObjCKVCFoundation) | ![Mulle kybernetiK tag](https://img.shields.io/github/tag/MulleFoundation/MulleObjCKVCFoundation.svg) [![Build Status](https://travis-ci.org/MulleFoundation/MulleObjCKVCFoundation.svg?branch=release)](https://travis-ci.org/MulleFoundation/MulleObjCKVCFoundation)
-
+```
+   .-------------------------------------------------------------------.
+   | MulleFoundation                                                   |
+   '-------------------------------------------------------------------'
+   .----------------------------.
+   | Calendar                   |
+   '----------------------------'
+   .----------------------------.
+   | OS                         |
+   '----------------------------'
+           .--------------------..----------..=====..---------.
+           | Plist              || Archiver || KVC || Unicode |
+           '--------------------''----------''=====''---------'
+           .--------------------------------------------------..-------.
+           | Standard                                         || Math  |
+           '--------------------------------------------------''-------'
+   .------..-----------------------------..----------------------------.
+   | Lock || Container                   || Value                      |
+   '------''-----------------------------''----------------------------'
+   .-------------------------------------------------------------------.
+   | MulleObjC                                                         |
+   '-------------------------------------------------------------------'
+```
 
 ## Install
 
