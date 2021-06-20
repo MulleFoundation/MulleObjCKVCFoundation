@@ -2,6 +2,7 @@
 # import <Foundation/Foundation.h>
 #else
 # import <MulleObjCKVCFoundation/MulleObjCKVCFoundation.h>
+# import <MulleObjC/NSDebug.h>
 #endif
 
 

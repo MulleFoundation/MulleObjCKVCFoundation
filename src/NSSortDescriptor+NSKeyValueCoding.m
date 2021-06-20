@@ -41,7 +41,7 @@
 // std-c and other dependencies
 
 
-@implementation NSSortDescriptor (NSKeyValueCoding)
+@implementation NSSortDescriptor( NSKeyValueCoding)
 
 - (NSComparisonResult) compareObject:(id) a
                             toObject:(id) b

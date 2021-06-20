@@ -35,18 +35,15 @@
 //
 #import "import.h"
 
-#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0 << 20) | (18 << 8) | 0)
+#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0 << 20) | (19 << 8) | 0)
 
-// export everything with NS
-#import "NSNumber+MulleObjCKVCArithmetic.h"
-#import "NSObject+KVCSupport.h"
-#import "NSObject+KeyValueCoding.h"
+#import "import.h"
 
-// export everything with MulleObjC
-#import "MulleObjCLoader+MulleObjCKVCFoundation.h"
+#import  "_MulleObjCKVCFoundation-export.h"
+#include "_MulleObjCKVCFoundation-provide.h"
 
-
-// export nothing with _MulleObjC
-#if MULLE_OBJC_STANDARD_FOUNDATION_VERSION < ((0 << 20) | (14 << 8) | 0)
-# error "MulleObjCStandardFoundation is too old"
+#ifdef __has_include
+# if __has_include( "_MulleObjCKVCFoundation-versioncheck.h")
+#  include "_MulleObjCKVCFoundation-versioncheck.h"
+# endif
 #endif
