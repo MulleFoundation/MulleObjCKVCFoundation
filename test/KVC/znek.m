@@ -61,11 +61,11 @@ int main(int argc, const char * argv[]) {
 
 		Foo *foo = [[[Foo alloc] init] autorelease];
 		id l = [foo valueForKeyPath:@"bars.@avg.value"];
-		printf( "l = %s\n", [l cStringDescription]);
+		printf( "l = %s\n", [l UTF8String]);
 
 		[foo setValue:[NSNumber numberWithInteger:0] forKeyPath:@"bars.value"];
 		l = [foo valueForKeyPath:@"bars.value"];
-      printf( "l = %s\n", [l cStringDescription]);
+      printf( "l = %s\n", [l UTF8String]);
 	}
 	return 0;
 }
