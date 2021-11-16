@@ -317,7 +317,7 @@ void   __MulleObjCDivineStoredValueForKeyKVCInformation( struct _MulleObjCKVCInf
  *
  * Possibility #2 check for NSObject and EOGenericObject implementations as they are "known"
  *
- * Possibility #3 ask the class to fill in KVC value information <<<< this is best!!
+ * Possibility #3 ask the class to fill in KVC value information <-- this is best!!
  * (see NSObject+NSKVCInformation)
  */
 void   __MulleObjCDivineValueForKeyKVCInformation( struct _MulleObjCKVCInformation *p,
