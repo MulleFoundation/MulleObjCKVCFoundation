@@ -1,6 +1,8 @@
 cmake_minimum_required( VERSION 3.1)
 
 project( MulleObjCKVCFoundation C)
+add_definitions( -DMULLE_OBJC_KVC_FOUNDATION_EXTERN_GLOBAL=extern)
+
 
 
 ### mulle-sde environment
