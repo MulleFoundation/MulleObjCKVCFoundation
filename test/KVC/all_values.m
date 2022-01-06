@@ -45,9 +45,9 @@
    fprintf( stderr, "ll  = %lld\n", _ll);
    fprintf( stderr, "ull = %llu\n", _ull);
 
-   fprintf( stderr, "f   = %f\n", _f);
-   fprintf( stderr, "d   = %f\n", _d);
-   fprintf( stderr, "ld  = %Lf\n", _ld);
+   fprintf( stderr, "f   = %g\n", _f);
+   fprintf( stderr, "d   = %g\n", _d);
+   fprintf( stderr, "ld  = %Lg\n", _ld);
 }
 
 @end
