@@ -9,6 +9,8 @@
 *.old
 tmp.*
 
+.gdb_history
+
 build/
 kitchen/
 build-*.d/
