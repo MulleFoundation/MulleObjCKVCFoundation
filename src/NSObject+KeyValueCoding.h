@@ -41,7 +41,7 @@
 @class NSDictionary;
 
 
-MULLE_OBJC_KVC_FOUNDATION_EXTERN_GLOBAL
+MULLE_OBJC_KVC_FOUNDATION_GLOBAL
 NSString   *NSUndefinedKeyException;
 
 

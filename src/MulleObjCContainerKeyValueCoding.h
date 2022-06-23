@@ -40,8 +40,8 @@
 // std-c and other dependencies
 
 
-MULLE_OBJC_KVC_FOUNDATION_EXTERN_GLOBAL
+MULLE_OBJC_KVC_FOUNDATION_GLOBAL
 id   MulleObjCContainerValueForKey( id self, NSString *key, id container);
 
-MULLE_OBJC_KVC_FOUNDATION_EXTERN_GLOBAL
+MULLE_OBJC_KVC_FOUNDATION_GLOBAL
 void   MulleObjCContainerTakeValueForKey( id self, id value, NSString *key);
