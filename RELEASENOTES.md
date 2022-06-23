@@ -1,3 +1,7 @@
+### 0.20.1
+
+* change GLOBAL for Windows
+
 ## 0.20.0
 
 * Various small improvements
