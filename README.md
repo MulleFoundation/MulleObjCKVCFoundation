@@ -16,7 +16,7 @@ This adds a lot of methods to NSObject, NSArray, NSSet et al. via categories.
 
 ## Install
 
-See [foundation-developer](//github.com//foundation-developer) for
+See [foundation-developer](/MulleFoundation/foundation-developer) for
 installation instructions.
 
 
