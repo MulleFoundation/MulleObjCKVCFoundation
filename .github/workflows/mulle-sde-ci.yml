@@ -29,13 +29,10 @@ jobs:
       run:  env | sort
 
     - uses: actions/checkout@v2
-      if: ${{ ! env.ACT }}
 
     - uses: mulle-sde/github-ci@v1
-      if: ${{ ! env.ACT }}
 
     - uses: mulle-cc/github-ci@v4
-      if: ${{ ! env.ACT }}
 
     - name: Dump Project Environment
       run:  |
