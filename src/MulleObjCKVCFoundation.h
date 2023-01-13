@@ -35,7 +35,7 @@
 //
 #import "import.h"
 
-#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0 << 20) | (20 << 8) | 2)
+#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0 << 20) | (20 << 8) | 3)
 
 #import "import.h"
 
