@@ -1,0 +1,6 @@
+Adds key-value coding to the class system. This is a runtime interpretation
+scheme, so that you can write `[foo valueForKey:@"bar.baz"]` as a short-cut
+for `[[foo bar] baz]` for example.
+
+This adds a lot of methods to NSObject, NSArray, NSSet et al. via categories.
+

@@ -244,7 +244,7 @@ void   __MulleObjCDivineTakeValueForKeyKVCInformation( struct _MulleObjCKVCInfor
 
    if( [aClass accessInstanceVariablesDirectly])
    {
-#warning (nat) this is apple bug compatible
+      // MEMO: (nat) this is apple bug compatible
       // this should be below _underscore
       if( mask & _MulleObjCKVCIvarBit)
          if( useInstanceVariable( p, aClass,key))

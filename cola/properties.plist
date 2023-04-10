@@ -1,0 +1,31 @@
+{
+   project =
+   {
+      description="🔑 Key-Value-Coding based on MulleObjCStandardFoundation";
+      domain="github";
+      name="MulleObjCKVCFoundation";
+      user="MulleFoundation";
+      repo="MulleObjCKVCFoundation";
+      homepage="https://github.com/MulleFoundation/MulleObjCKVCFoundation";
+      license="BSD-3-Clause"
+   };
+   dependencies =
+   (
+      {
+         description="🚤 Objective-C classes based on the C standard library";
+         domain="github";
+         name="MulleObjCStandardFoundation";
+         repo="MulleObjCStandardFoundation";
+         url="https://github.com/MulleFoundation/MulleObjCStandardFoundation";
+         user="MulleFoundation";
+      },
+      {
+         description="📒 Lists mulle-objc runtime information contained in executables.";
+         domain="github";
+         name="mulle-objc-list";
+         repo="mulle-objc-list";
+         url="https://github.com/mulle-objc/mulle-objc-list";
+         user="mulle-objc";
+      }
+   )
+}
