@@ -40,12 +40,21 @@
 
 // std-c and other dependencies
 
+@interface NSObject( _NSNumber)
+
+- (BOOL) __isNSNumber;
+
+@end
+
+
+#define INTERPRET_NUMERIC_KEYS
 
 @implementation NSArray( _KeyValueCoding)
 
 - (id) valueForKey:(NSString *) key
 {
-   NSUInteger       n;
+   NSUInteger   n;
+   NSUInteger   i;
 
    NSCParameterAssert( [key isKindOfClass:[NSString class]]);
 
@@ -53,13 +62,45 @@
    if( ! n)
       return( nil);  // i am empty
 
+#ifdef INTERPRET_NUMERIC_KEYS
+   if( [key __isNSNumber])
+   {
+      i = [key integerValue];
+      return( [self objectAtIndex:i]);
+   }
+#endif
+
    return( MulleObjCContainerValueForKey( self, key, [NSMutableArray arrayWithCapacity:n]));
 }
 
+@end
+
+
+@implementation NSMutableArray ( _KeyValueCoding)
 
 - (void) takeValue:(id) value
             forKey:(NSString *) key
 {
+#ifdef INTERPRET_NUMERIC_KEYS
+   NSUInteger   i;
+
+   if( [key __isNSNumber])
+   {
+      i = [key integerValue];
+      if( i == [self count])
+      {
+         if( value)
+            [self addObject:value];
+         return;
+      }
+      if( value)
+         [self replaceObjectAtIndex:i
+                         withObject:value];
+      else
+         [self removeObjectAtIndex:i];
+      return;
+   }
+#endif
    MulleObjCContainerTakeValueForKey( self, value, key);
 }
 

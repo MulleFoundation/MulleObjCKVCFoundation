@@ -58,3 +58,7 @@ tmp.*/
 *.sublime-workspace
 .mulle-make-build-dir
 version.old
+wilted/
+mulle-template-composer-*
+mulle-markdown-preview-*.html
+build-*
