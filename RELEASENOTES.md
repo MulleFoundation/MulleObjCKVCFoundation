@@ -1,3 +1,7 @@
+### 0.20.4
+
+* experimental valueForKey: on arrays now detects numeric keys and uses them as indexes
+
 ### 0.20.3
 
 * mulle-sde needed to be upgraded here

@@ -1,6 +1,6 @@
 {
    "name" : "MulleObjCKVCFoundation",
-   "version" : "0.20.3",
+   "version" : "0.20.4",
    "description" : "Key-Value-Coding based on MulleObjCStandardFoundation",
    "keywords" : [],
    "license" : "BSD-3-Clause",
@@ -31,7 +31,6 @@
       "src/NSProxy+_MulleObjCKVCInformation.m",
       "src/NSSet+KeyValueCoding.m",
       "src/NSSortDescriptor+NSKeyValueCoding.m",
-      "src/reflect/objc-loader.inc",
       "src/reflect/_MulleObjCKVCFoundation-export.h",
       "src/reflect/_MulleObjCKVCFoundation-import-private.h",
       "src/reflect/_MulleObjCKVCFoundation-import.h",
