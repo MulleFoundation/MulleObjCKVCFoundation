@@ -262,8 +262,6 @@ static int  handle_operator( NSString *key, char *s, size_t len, char *rest, siz
 - (id) valueForKeyPath:(NSString *) keyPath
 {
    NSUInteger                                    len;
-   char                                          *buf;
-   char                                          *tofree;
    char                                          *memo;
    char                                          *s;
    char                                          *sentinel;
@@ -272,17 +270,13 @@ static int  handle_operator( NSString *key, char *s, size_t len, char *rest, siz
    id                                            obj;
    size_t                                        substring_len;
    struct _MulleObjCCheatingASCIIStringStorage   storage;
+   mulle_flexarray( buf, char, 0x100);
 
    s   = (char *) [keyPath UTF8String];
    len = [keyPath mulleUTF8StringLength];
 
    {
-      char   tmp[ 0x400];
-
-      tofree = NULL;
-      buf    = tmp;
-      if( len >= 0x400 - 1)
-         tofree = buf = mulle_malloc( len + 1);
+      mulle_flexarray_alloc( buf, len + 1);
 
       strcpy( buf, s);
 
@@ -305,13 +299,13 @@ static int  handle_operator( NSString *key, char *s, size_t len, char *rest, siz
             key  = _MulleObjCCheatingASCIIStringStorageInit( &storage, substring, substring_len);
             if( handle_operator( key, substring, substring_len, memo, &buf[ len] - memo, &obj))
             {
-               mulle_free( tofree);
+               mulle_flexarray_done( buf);
                return( obj);
             }
 
             obj = [obj valueForKey:key];
          }
-         mulle_free( tofree);
+         mulle_flexarray_done( buf);
       }
 
       *s            = 0;
@@ -379,8 +373,6 @@ static id   traverse_key_path( id obj,
 {
    NSUInteger                                    len;
    char                                          *s;
-   char                                          *buf;
-   char                                          *tofree;
    id                                            key;
    id                                            obj;
    struct _MulleObjCCheatingASCIIStringStorage   storage;
@@ -388,21 +380,14 @@ static id   traverse_key_path( id obj,
    s   = (char *) [keyPath UTF8String];
    len = [keyPath mulleUTF8StringLength];
 
+   mulle_flexarray_do( buf, char, 0x100, len + 1)
    {
-      char    tmp[ 0x400];
-
-      tofree = NULL;
-      buf    = tmp;
-      if( len >= 0x400 - 1)
-         tofree = buf = mulle_malloc( len + 1);
       memcpy( buf, s, len + 1);
 
       obj = traverse_key_path( self, buf, len, &storage);
-
-      mulle_free( tofree);
    }
-   key  = _MulleObjCCheatingASCIIStringStorageGetObject( &storage);
 
+   key  = _MulleObjCCheatingASCIIStringStorageGetObject( &storage);
    [obj takeValue:value
            forKey:key];
 }
