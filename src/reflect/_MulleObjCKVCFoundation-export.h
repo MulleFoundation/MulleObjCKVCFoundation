@@ -9,8 +9,15 @@
  *
  *      mulle-sde environment set MULLE_MATCH_TO_C_RUN DISABLE
  */
+#ifndef mulle_objc_kvc_foundation_export_h__
+#define mulle_objc_kvc_foundation_export_h__
+
+
 #import "MulleObjCContainerKeyValueCoding.h"
 #import "MulleObjCLoader+MulleObjCKVCFoundation.h"
 #import "NSNumber+MulleObjCKVCArithmetic.h"
 #import "NSObject+KVCSupport.h"
 #import "NSObject+KeyValueCoding.h"
+
+
+#endif
