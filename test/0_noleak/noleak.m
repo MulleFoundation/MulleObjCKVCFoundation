@@ -16,7 +16,7 @@
 
 
 // just don't leak anything
-main()
+int   main( void)
 {
 #ifdef __MULLE_OBJC__
    if( mulle_objc_global_check_universe( __MULLE_OBJC_UNIVERSENAME__) !=
