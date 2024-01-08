@@ -63,5 +63,6 @@ src/NSNumber+MulleObjCKVCArithmetic.h
 src/NSObject+KVCSupport.h
 src/NSObject+KeyValueCoding.h
 src/NSObject+_MulleObjCKVCInformation.h
+src/reflect/_MulleObjCKVCFoundation-versioncheck.h
 )
 

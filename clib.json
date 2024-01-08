@@ -1,7 +1,7 @@
 {
    "name" : "MulleObjCKVCFoundation",
-   "version" : "0.20.4",
-   "description" : "Key-Value-Coding based on MulleObjCStandardFoundation",
+   "version" : "0.20.5",
+   "description" : "🔑 Key-Value-Coding based on MulleObjCStandardFoundation",
    "keywords" : [],
    "license" : "BSD-3-Clause",
    "repo" : "MulleFoundation/MulleObjCKVCFoundation",
@@ -38,6 +38,7 @@
       "src/reflect/_MulleObjCKVCFoundation-include-private.h",
       "src/reflect/_MulleObjCKVCFoundation-include.h",
       "src/reflect/_MulleObjCKVCFoundation-provide.h",
+      "src/reflect/_MulleObjCKVCFoundation-versioncheck.h",
       "src/_MulleObjCInstanceVariableAccess.h",
       "src/_MulleObjCInstanceVariableAccess.m",
       "src/_MulleObjCKVCInformation.h",
