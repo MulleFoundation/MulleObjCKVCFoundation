@@ -270,42 +270,37 @@ static int  handle_operator( NSString *key, char *s, size_t len, char *rest, siz
    id                                            obj;
    size_t                                        substring_len;
    struct _MulleObjCCheatingASCIIStringStorage   storage;
-   mulle_flexarray( buf, char, 0x100);
 
    s   = (char *) [keyPath UTF8String];
    len = [keyPath mulleUTF8StringLength];
 
+   mulle_alloca_do( buf, char, len + 1)
    {
-      mulle_flexarray_alloc( buf, len + 1);
-
       strcpy( buf, s);
 
    // this traverse_key_path handles operators
+      sentinel = &buf[ len]; // last can't be dot
+      memo     = buf;
+      obj      = self;
+
+      for( s = buf; s < sentinel; s++)
       {
-         sentinel = &buf[ len]; // last cant be dot
-         memo     = buf;
-         obj      = self;
+         if( *s != '.')
+            continue;
 
-         for( s = buf; s < sentinel; s++)
+         *s            = 0;
+         substring     = memo;
+         substring_len = s - memo;
+         memo          = s + 1;
+
+         key = _MulleObjCCheatingASCIIStringStorageInit( &storage, substring, substring_len);
+         if( handle_operator( key, substring, substring_len, memo, &buf[ len] - memo, &obj))
          {
-            if( *s != '.')
-               continue;
-
-            *s            = 0;
-            substring     = memo;
-            substring_len = s - memo;
-            memo          = s + 1;
-
-            key  = _MulleObjCCheatingASCIIStringStorageInit( &storage, substring, substring_len);
-            if( handle_operator( key, substring, substring_len, memo, &buf[ len] - memo, &obj))
-            {
-               mulle_flexarray_done( buf);
-               return( obj);
-            }
-
-            obj = [obj valueForKey:key];
+            // MEMO: only useable because we are in a single mulle_alloca_do
+            _mulle_alloca_do_return( buf, obj);
          }
-         mulle_flexarray_done( buf);
+
+         obj = [obj valueForKey:key];
       }
 
       *s            = 0;
@@ -320,7 +315,8 @@ static int  handle_operator( NSString *key, char *s, size_t len, char *rest, siz
                           0,
                           &obj))
       {
-         return( obj);
+         // MEMO: only useable because we are in a single mulle_alloca_do
+         _mulle_alloca_do_return( buf, obj);
       }
    }
 
@@ -380,7 +376,7 @@ static id   traverse_key_path( id obj,
    s   = (char *) [keyPath UTF8String];
    len = [keyPath mulleUTF8StringLength];
 
-   mulle_flexarray_do( buf, char, 0x100, len + 1)
+   mulle_alloca_do( buf, char, len + 1)
    {
       memcpy( buf, s, len + 1);
 
