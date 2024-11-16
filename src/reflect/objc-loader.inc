@@ -1,7 +1,3 @@
-      { @selector( MulleObjCLoader), @selector( MulleObjCContainerFoundation) },      // 47a9beb6;MulleObjCLoader;2132102f;MulleObjCContainerFoundation
-      { @selector( MulleObjCLoader), @selector( MulleObjCStandardFoundation) },      // 47a9beb6;MulleObjCLoader;ed704a42;MulleObjCStandardFoundation
-      { @selector( MulleObjCLoader), @selector( MulleObjCTimeFoundation) },      // 47a9beb6;MulleObjCLoader;cc20d48b;MulleObjCTimeFoundation
-      { @selector( MulleObjCLoader), @selector( MulleObjCValueFoundation) },      // 47a9beb6;MulleObjCLoader;535d5103;MulleObjCValueFoundation
       { @selector( NSArray), @selector( MulleObjCKVCArithmetic) },      // 233490fe;NSArray;51efafe9;MulleObjCKVCArithmetic
       { @selector( NSArray), @selector( _KeyValueCoding) },      // 233490fe;NSArray;c60e3006;_KeyValueCoding
       { @selector( NSDictionary), @selector( _KeyValueCoding) },      // 8b2abcad;NSDictionary;c60e3006;_KeyValueCoding

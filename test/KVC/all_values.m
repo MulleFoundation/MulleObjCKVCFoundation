@@ -53,6 +53,12 @@
 @end
 
 
+static void   test( id obj, NSString *key)
+{
+   mulle_printf( "%@: %@\n", key, [[obj valueForKey:key] description]);
+}
+
+
 int  main( int argc, const char * argv[])
 {
    Foo        *foo;
@@ -100,26 +106,26 @@ int  main( int argc, const char * argv[])
 
    //   [foo dump];
 
-   printf( "%s\n", [[[foo valueForKey:@"c"] description] UTF8String]);
-   printf( "%s\n", [[[foo valueForKey:@"uc"] description] UTF8String]);
+   test(foo, @"c");
+   test(foo, @"uc");
 
-   printf( "%s\n", [[[foo valueForKey:@"s"] description] UTF8String]);
-   printf( "%s\n", [[[foo valueForKey:@"us"] description] UTF8String]);
+   test(foo, @"s");
+   test(foo, @"us");
 
-   printf( "%s\n", [[[foo valueForKey:@"i"] description] UTF8String]);
-   printf( "%s\n", [[[foo valueForKey:@"ui"] description] UTF8String]);
+   test(foo, @"i");
+   test(foo, @"ui");
 
-   printf( "%s\n", [[[foo valueForKey:@"l"] description] UTF8String]);
-   printf( "%s\n", [[[foo valueForKey:@"ul"] description] UTF8String]);
+   test(foo, @"l");
+   test(foo, @"ul");
 
-   printf( "%s\n", [[[foo valueForKey:@"ll"] description] UTF8String]);
-   printf( "%s\n", [[[foo valueForKey:@"ull"] description] UTF8String]);
+   test(foo, @"ll");
+   test(foo, @"ull");
 
-   printf( "%s\n", [[[foo valueForKey:@"f"] description] UTF8String]);
-   printf( "%s\n", [[[foo valueForKey:@"d"] description] UTF8String]);
-   printf( "%s\n", [[[foo valueForKey:@"ld"] description] UTF8String]);
+   test(foo, @"f");
+   test(foo, @"d");
+   test(foo, @"ld");
 
-   printf( "%s\n", [[[foo valueForKey:@"nr"] description] UTF8String]);
+   test(foo, @"nr");
 
    return( 0);
 }
