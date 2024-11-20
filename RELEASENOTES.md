@@ -1,3 +1,8 @@
+### 0.20.6
+
+
+* migrate from flexbuffer to alloca
+
 ### 0.20.5
 
 * Various small improvements
