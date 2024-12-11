@@ -12,7 +12,7 @@ This adds a lot of methods to NSObject, NSArray, NSSet et al. via categories.
 
 | Release Version                                       | Release Notes
 |-------------------------------------------------------|--------------
-| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/MulleFoundation/MulleObjCKVCFoundation.svg?branch=release) [![Build Status](https://github.com/MulleFoundation/MulleObjCKVCFoundation/workflows/CI/badge.svg?branch=release)](//github.com/MulleFoundation/MulleObjCKVCFoundation/actions) | [RELEASENOTES](RELEASENOTES.md) |
+| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/MulleFoundation/MulleObjCKVCFoundation.svg) [![Build Status](https://github.com/MulleFoundation/MulleObjCKVCFoundation/workflows/CI/badge.svg)](//github.com/MulleFoundation/MulleObjCKVCFoundation/actions) | [RELEASENOTES](RELEASENOTES.md) |
 
 
 

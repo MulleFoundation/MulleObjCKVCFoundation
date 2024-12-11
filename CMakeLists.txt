@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.15)
 
-project( MulleObjCKVCFoundation VERSION 0.20.6 LANGUAGES C)
+project( MulleObjCKVCFoundation VERSION 0.20.7 LANGUAGES C)
 
 
 
