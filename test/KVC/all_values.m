@@ -24,7 +24,9 @@
 @property( assign) unsigned long long ull;
 @property( assign) float f;
 @property( assign) double d;
+#ifdef _C_LNG_DBL
 @property( assign) long double ld;
+#endif
 @property( retain) NSNumber *nr;
 
 @end
@@ -47,7 +49,9 @@
 
    fprintf( stderr, "f   = %g\n", _f);
    fprintf( stderr, "d   = %g\n", _d);
+#ifdef _C_LNG_DBL
    fprintf( stderr, "ld  = %Lg\n", _ld);
+#endif
 }
 
 @end
@@ -101,9 +105,10 @@ int  main( int argc, const char * argv[])
           forKey:@"f"];
    [foo setValue:nr
           forKey:@"d"];
+#ifdef _C_LNG_DBL
    [foo setValue:nr
           forKey:@"ld"];
-
+#endif
    //   [foo dump];
 
    test(foo, @"c");
@@ -123,8 +128,9 @@ int  main( int argc, const char * argv[])
 
    test(foo, @"f");
    test(foo, @"d");
+#ifdef _C_LNG_DBL
    test(foo, @"ld");
-
+#endif
    test(foo, @"nr");
 
    return( 0);

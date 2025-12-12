@@ -74,8 +74,9 @@ static BOOL  isSupportedObjCType( char c)
 
    case _C_FLT :
    case _C_DBL :
+#ifdef _C_LNG_DBL
    case _C_LNG_DBL :
-
+#endif
    case _C_CLASS :
    case _C_SEL :
    case _C_ID :
@@ -460,7 +461,9 @@ void  __MulleObjCSetObjectValueWithAccessorForType( id obj, SEL sel, id value, I
 
       case _C_FLT      : MulleObjCIMPCallWithFloat( imp, obj, sel, 0); return;
       case _C_DBL      : MulleObjCIMPCallWithDouble( imp, obj, sel, 0); return;
+#ifdef _C_LNG_DBL
       case _C_LNG_DBL  : MulleObjCIMPCallWithLongDouble( imp, obj, sel, 0); return;
+#endif
       default         :
          [NSException raise:NSInvalidArgumentException
                      format:@"%s failed to handle \"%c\" for -[%@ %@ %@]. I don't know what to do with it",
@@ -488,7 +491,9 @@ void  __MulleObjCSetObjectValueWithAccessorForType( id obj, SEL sel, id value, I
    case _C_ULNG_LNG : MulleObjCIMPCallWithUnsignedLongLong( imp, obj, sel, [value unsignedLongLongValue]); return;
    case _C_FLT      : MulleObjCIMPCallWithFloat( imp, obj, sel, [value floatValue]); return;
    case _C_DBL      : MulleObjCIMPCallWithDouble( imp, obj, sel, [value doubleValue]); return;
+#ifdef _C_LNG_DBL
    case _C_LNG_DBL  : MulleObjCIMPCallWithLongDouble( imp, obj, sel, [value longDoubleValue]); return;
+#endif
       break;
 
    default      :
@@ -524,8 +529,9 @@ id   __MulleObjCGetObjectValueWithAccessorForType( id obj, SEL sel, IMP imp, cha
    case _C_ULNG_LNG  : return( [NSNumber numberWithUnsignedLongLong:MulleObjCIMPCall0ReturningUnsignedLongLong( imp, obj, sel)]);
    case _C_FLT       : return( [NSNumber numberWithFloat:MulleObjCIMPCall0ReturningFloat( imp, obj, sel)]);
    case _C_DBL       : return( [NSNumber numberWithDouble:MulleObjCIMPCall0ReturningDouble( imp, obj, sel)]);
+#ifdef _C_LNG_DBL
    case _C_LNG_DBL   : return( [NSNumber numberWithLongDouble:MulleObjCIMPCall0ReturningLongDouble( imp, obj, sel)]);
-
+#endif
    default         :
       [NSException raise:NSInvalidArgumentException
                   format:@"%s failed to handle \"%c\" for -[%@ %@]. I don't know what to do with it",
