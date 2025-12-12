@@ -78,7 +78,9 @@ void   _MulleObjCSetInstanceVariableForType( id p, unsigned int offset, id value
 
       case _C_FLT      : *(float *)  dst = 0; return;
       case _C_DBL      : *(double *) dst = 0; return;
+#ifdef _C_LNG_DBL
       case _C_LNG_DBL  : *(double *) dst = 0; return;
+#endif
       case _C_COPY_ID :
          old         = *(id *) dst;
          *(id *) dst = 0;
@@ -121,8 +123,9 @@ void   _MulleObjCSetInstanceVariableForType( id p, unsigned int offset, id value
 
    case _C_FLT     : *(float *)       dst = [value floatValue]; return;
    case _C_DBL     : *(double *)      dst = [value doubleValue]; return;
+#ifdef _C_LNG_DBL
    case _C_LNG_DBL : *(long double *) dst = [value longDoubleValue]; return;
-
+#endif
    case _C_SEL     : *(SEL *)         dst = (SEL) [value longValue]; return;
 
    case _C_COPY_ID :
@@ -175,8 +178,9 @@ id   _MulleObjCGetInstanceVariableForType( id p, unsigned int offset, char value
 
    case _C_FLT     : return( [NSNumber numberWithFloat:*(float *) dst]);
    case _C_DBL     : return( [NSNumber numberWithDouble:*(double *) dst]);
+#ifdef _C_LNG_DBL
    case _C_LNG_DBL : return( [NSNumber numberWithLongDouble:*(long double *) dst]);
-
+#endif
    case _C_SEL     : return( [NSNumber numberWithLong:(long) *(SEL *) dst]);
 
    case _C_COPY_ID :

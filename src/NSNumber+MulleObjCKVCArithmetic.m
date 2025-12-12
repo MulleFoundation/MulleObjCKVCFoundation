@@ -74,7 +74,9 @@ static int  simplify_type_for_arithmetic( int type)
    char          *p_other_type;
    long long     a64, b64;
    double        da, db;
+#ifdef _C_LNG_DBL
    long double   lda, ldb;
+#endif
    int           type;
    int           other_type;
 
@@ -96,11 +98,15 @@ static int  simplify_type_for_arithmetic( int type)
       default           : goto bail;
       case _C_LNG_LNG   : goto do_64_64_add;
       case _C_DBL       : goto do_d_d_add;
+#ifdef _C_LNG_DBL
       case _C_LNG_DBL   : goto do_ld_ld_add;
+#endif
       }
 
    case _C_DBL          : goto do_d_d_add;
+#ifdef _C_LNG_DBL
    case _C_LNG_DBL      : goto do_ld_ld_add;
+#endif
    }
 
    // integer overflows to 64
@@ -114,10 +120,12 @@ do_d_d_add :
    db = [other doubleValue];
    return( [NSNumber numberWithDouble:da + db]);
 
+#ifdef _C_LNG_DBL
 do_ld_ld_add :
    lda = [self longDoubleValue];
    ldb = [other longDoubleValue];
    return( [NSNumber numberWithLongDouble:lda + ldb]);
+#endif
 
 bail:
    MulleObjCThrowInternalInconsistencyException( @"unknown objc-type");
@@ -129,7 +137,9 @@ bail:
    char          *p_type;
    long long     a64;
    double        da;
+#ifdef _C_LNG_DBL
    long double   lda;
+#endif
    int           type;
 
    p_type = [self objCType];
@@ -143,7 +153,9 @@ bail:
    default          : goto bail;
    case _C_LNG_LNG  : goto do_64_64_div;
    case _C_DBL      : goto do_d_d_div;
+#ifdef _C_LNG_DBL
    case _C_LNG_DBL  : goto do_ld_ld_div;
+#endif
    }
 
    // integer overflows to 64
@@ -155,9 +167,11 @@ do_d_d_div :
    da = [self doubleValue];
    return( [NSNumber numberWithDouble:da / divisor]);
 
+#ifdef _C_LNG_DBL
 do_ld_ld_div :
    lda = [self longDoubleValue];
    return( [NSNumber numberWithLongDouble:lda / divisor]);
+#endif
 
 bail:
    MulleObjCThrowInternalInconsistencyException( @"unknown objc-type");
