@@ -1,0 +1,15 @@
+bool: 1
+char: 42
+short: 100
+int: 1234
+long: 99999
+longlong: 1234567890
+float: 3.14
+double: 2.71828
+uchar: 200
+ushort: 50000
+uint: 4000000000
+ulong: 1000000
+ulonglong: 9999999999
+id: hello
+id-nil: nil

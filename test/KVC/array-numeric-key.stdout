@@ -1,0 +1,8 @@
+empty: nil
+string-key result count: 3
+after append count: 3
+appended score: 3
+after replace [0] score: 99
+after remove count: 2
+a score: 50
+b score: 50
