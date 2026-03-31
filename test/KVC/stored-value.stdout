@@ -1,0 +1,4 @@
+valueForKey: 142
+storedValueForKey: 42
+after takeStoredValue ivar: 7
+after takeStoredValue method: 107
