@@ -408,6 +408,7 @@ static id   traverse_key_path( id obj,
 - (void) handleTakeValue:(id) value
            forUnboundKey:(NSString *) key
 {
+   MULLE_C_UNUSED( value );
    MulleObjCThrowInvalidArgumentException( @"unbound key %@ on %@", key, self);
 }
 

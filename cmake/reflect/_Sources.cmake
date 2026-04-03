@@ -31,7 +31,7 @@ src/NSSortDescriptor+NSKeyValueCoding.m
 # contents selected with patternfile ??-source--stage2-sources
 #
 set( STAGE2_SOURCES
-src/MulleObjCLoader+MulleObjCKVCFoundation.m
+src/MulleObjCDeps+MulleObjCKVCFoundation.m
 )
 
 #

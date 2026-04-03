@@ -55,10 +55,10 @@ src/generic/include.h
 #
 set( PUBLIC_HEADERS
 src/MulleObjCContainerKeyValueCoding.h
+src/MulleObjCDeps+MulleObjCKVCFoundation.h
 src/_MulleObjCInstanceVariableAccess.h
 src/MulleObjCKVCFoundation.h
 src/_MulleObjCKVCInformation.h
-src/MulleObjCLoader+MulleObjCKVCFoundation.h
 src/NSNumber+MulleObjCKVCArithmetic.h
 src/NSObject+KVCSupport.h
 src/NSObject+KeyValueCoding.h

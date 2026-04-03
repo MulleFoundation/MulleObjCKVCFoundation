@@ -62,28 +62,28 @@
    {
    case _MulleObjCKVCValueForKeyIndex :
 #ifdef DEBUG_VERBOSE
-      fprintf( stderr, "Divine ValueForKey: ");
+      mulle_fprintf( stderr, "Divine ValueForKey: ");
 #endif
       __MulleObjCDivineValueForKeyKVCInformation( info, cls, key, _MulleObjCKVCGenericMethodOnly);
       break;
 
    case _MulleObjCKVCStoredValueForKeyIndex :
 #ifdef DEBUG_VERBOSE
-      fprintf( stderr, "Divine StoredValueForKey: ");
+      mulle_fprintf( stderr, "Divine StoredValueForKey: ");
 #endif
       __MulleObjCDivineStoredValueForKeyKVCInformation( info, cls, key, _MulleObjCKVCGenericMethodOnly);
       break;
 
    case _MulleObjCKVCTakeValueForKeyIndex :
 #ifdef DEBUG_VERBOSE
-      fprintf( stderr, "Divine TakeValueForKey: ");
+      mulle_fprintf( stderr, "Divine TakeValueForKey: ");
 #endif
       __MulleObjCDivineTakeValueForKeyKVCInformation( info, cls, key, _MulleObjCKVCGenericMethodOnly);
       break;
 
    case _MulleObjCKVCTakeStoredValueForKeyIndex :
 #ifdef DEBUG_VERBOSE
-      fprintf( stderr, "Divine TakeStoredValueForKey: ");
+      mulle_fprintf( stderr, "Divine TakeStoredValueForKey: ");
 #endif
       __MulleObjCDivineTakeStoredValueForKeyKVCInformation( info, cls, key, _MulleObjCKVCGenericMethodOnly);
       break;

@@ -1,4 +1,5 @@
 # MulleObjCKVCFoundation Library Documentation for AI
+<!-- Keywords: kvc, key-value-coding -->
 
 ## 1. Introduction & Purpose
 
