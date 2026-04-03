@@ -143,7 +143,7 @@ static BOOL   useInstanceMethod( struct _MulleObjCKVCInformation *p,
    p->implementation = (IMP) _mulle_objc_method_get_implementation( method);
 
 #ifdef DEBUG_VERBOSE
-   fprintf( stderr, "method 0x%08x\n", p->selector);
+   mulle_fprintf( stderr, "method 0x%08x\n", p->selector);
 #endif
 
    NSCParameterAssert( isSupportedObjCType( p->valueType));
@@ -174,7 +174,7 @@ static BOOL   useInstanceVariable( struct _MulleObjCKVCInformation *p, Class aCl
    p->valueType = _mulle_objc_ivar_get_signature( ivar)[ 0];
 
 #ifdef DEBUG_VERBOSE
-   fprintf( stderr, "ivar %ld type:%c\n", (long) p->offset, p->valueType);
+   mulle_fprintf( stderr, "ivar %ld type:%c\n", (long) p->offset, p->valueType);
 #endif
    NSCParameterAssert( isSupportedObjCType( p->valueType));
    return( YES);

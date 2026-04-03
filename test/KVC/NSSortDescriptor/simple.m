@@ -26,7 +26,7 @@ int main(int argc, const char * argv[])
 
       array = [array sortedArrayUsingDescriptors:descriptors];
       value = [[array objectAtIndex:1] objectForKey:@"a"];
-      printf( "%s\n",  [value isEqualToString:@"c"] ? "passed" : "failed");
+      mulle_printf( "%s\n",  [value isEqualToString:@"c"] ? "passed" : "failed");
    }
    return( 0);
 }

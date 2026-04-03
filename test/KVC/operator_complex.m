@@ -16,9 +16,9 @@ static void   avg_test( NSArray *array, NSString  *keypath, long long  expect)
 
    result = [array valueForKeyPath:keypath];
    if( [result longLongValue] != expect)
-      printf( "failed\n");
+      mulle_printf( "failed\n");
    else
-      printf( "passed\n");
+      mulle_printf( "passed\n");
 }
 
 

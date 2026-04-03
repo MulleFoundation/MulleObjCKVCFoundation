@@ -23,9 +23,9 @@ static void   key_value_dictionary_test()
    [dict takeValue:nr
             forKey:key];
 
-   printf( "%s\n", [dict valueForKey:key] == nr ? "passed" : "failed");
-   printf( "%s\n", [dict valueForKey:@"bar"] == nr ? "passed" : "failed");
-   printf( "%s\n", [dict valueForKey:@"foo"] == nil ? "passed" : "failed");
+   mulle_printf( "%s\n", [dict valueForKey:key] == nr ? "passed" : "failed");
+   mulle_printf( "%s\n", [dict valueForKey:@"bar"] == nr ? "passed" : "failed");
+   mulle_printf( "%s\n", [dict valueForKey:@"foo"] == nil ? "passed" : "failed");
 }
 
 

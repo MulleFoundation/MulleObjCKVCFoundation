@@ -41,7 +41,7 @@
 {
    if( _protect0 != 0x4002 || _protect1 != 0x2004)
    {
-      fprintf( stderr, "overwrite protection triggered\n");
+      mulle_fprintf( stderr, "overwrite protection triggered\n");
       abort();
    }
    [super dealloc];
@@ -66,31 +66,31 @@ static void   printer( char *prefix, NSInteger x)
 {
    if( x > SHRT_MAX)
    {
-      printf( "%s SHRT_MAX+%ld\n", prefix, (long) x - SHRT_MAX);
+      mulle_printf( "%s SHRT_MAX+%ld\n", prefix, (long) x - SHRT_MAX);
       return;
    }
 
    if( x >= SHRT_MAX / 2)
    {
-      printf( "%s SHRT_MAX-%ld\n", prefix, (long) SHRT_MAX - (long) x);
+      mulle_printf( "%s SHRT_MAX-%ld\n", prefix, (long) SHRT_MAX - (long) x);
       return;
    }
 
 
    if( x < SHRT_MIN / 2)
    {
-      printf( "%s SHRT_MIN+%ld\n", prefix, -((long) SHRT_MIN - (long) x));
+      mulle_printf( "%s SHRT_MIN+%ld\n", prefix, -((long) SHRT_MIN - (long) x));
       return;
    }
 
 
    if( x < SHRT_MIN)
    {
-      printf( "%s SHRT_MIN+%ld\n", prefix, -((long) x - SHRT_MIN));
+      mulle_printf( "%s SHRT_MIN+%ld\n", prefix, -((long) x - SHRT_MIN));
       return;
    }
 
-   printf( "%s %ld\n", prefix, (long) x);
+   mulle_printf( "%s %ld\n", prefix, (long) x);
 }
 
 

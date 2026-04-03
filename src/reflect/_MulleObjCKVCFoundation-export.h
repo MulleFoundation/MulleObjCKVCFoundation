@@ -14,7 +14,7 @@
 
 
 #import "MulleObjCContainerKeyValueCoding.h"
-#import "MulleObjCLoader+MulleObjCKVCFoundation.h"
+#import "MulleObjCDeps+MulleObjCKVCFoundation.h"
 #import "NSNumber+MulleObjCKVCArithmetic.h"
 #import "NSObject+KVCSupport.h"
 #import "NSObject+KeyValueCoding.h"

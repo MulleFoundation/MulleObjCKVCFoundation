@@ -19,17 +19,17 @@ static void   avg_test( NSArray *array, NSString  *keypath, long long  expect)
    {
       if( [result longLongValue] != expect)
       {
-         printf( "failed: %lld vs. %lld (%p)\n", [result longLongValue], expect, result);
+         mulle_printf( "failed: %lld vs. %lld (%p)\n", [result longLongValue], expect, result);
          return;
       }
    }
    else
       if( expect)
       {
-         printf( "failed: %lld vs. %lld (%p)\n", [result longLongValue], expect, result);
+         mulle_printf( "failed: %lld vs. %lld (%p)\n", [result longLongValue], expect, result);
          return;
       }
-   printf( "passed\n");
+   mulle_printf( "passed\n");
 }
 
 

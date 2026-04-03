@@ -25,45 +25,45 @@
 
 - (void) dump
 {
-   fprintf( stdout, "%%f\n");
-   fprintf( stdout, "\tf   = %f\n", _f);
-   fprintf( stdout, "\td   = %f\n", _d);
+   mulle_fprintf( stdout, "%%f\n");
+   mulle_fprintf( stdout, "\tf   = %f\n", _f);
+   mulle_fprintf( stdout, "\td   = %f\n", _d);
 #ifdef _C_LNG_DBL
-   fprintf( stdout, "\tld  = %Lf\n", _ld);
+   mulle_fprintf( stdout, "\tld  = %Lf\n", _ld);
 #endif
 
-   fprintf( stdout, "%%g\n");
-   fprintf( stdout, "\tf   = %g\n", _f);
-   fprintf( stdout, "\td   = %g\n", _d);
+   mulle_fprintf( stdout, "%%g\n");
+   mulle_fprintf( stdout, "\tf   = %g\n", _f);
+   mulle_fprintf( stdout, "\td   = %g\n", _d);
 #ifdef _C_LNG_DBL
-   fprintf( stdout, "\tld  = %Lg\n", _ld);
+   mulle_fprintf( stdout, "\tld  = %Lg\n", _ld);
 #endif
-   fprintf( stdout, "Mulle\n");
-   fprintf( stdout, "\tf   = %0.8g\n", _f);
-   fprintf( stdout, "\td   = %0.17g\n", _d);
+   mulle_fprintf( stdout, "Mulle\n");
+   mulle_fprintf( stdout, "\tf   = %0.8g\n", _f);
+   mulle_fprintf( stdout, "\td   = %0.17g\n", _d);
 #ifdef _C_LNG_DBL
-   fprintf( stdout, "\tld  = %0.21Lg\n", _ld);
+   mulle_fprintf( stdout, "\tld  = %0.21Lg\n", _ld);
 #endif
 
-   fprintf( stdout, "Apple (does no ld)\n");
-   fprintf( stdout, "\tf   = %0.7g\n", _f);
-   fprintf( stdout, "\td   = %0.16g\n", _d);
+   mulle_fprintf( stdout, "Apple (does no ld)\n");
+   mulle_fprintf( stdout, "\tf   = %0.7g\n", _f);
+   mulle_fprintf( stdout, "\td   = %0.16g\n", _d);
 #ifdef _C_LNG_DBL
-   fprintf( stdout, "\tld  = %0.21Lg\n", _ld);
+   mulle_fprintf( stdout, "\tld  = %0.21Lg\n", _ld);
 #endif
    // Voodoo check
-   fprintf( stdout, "Mulle Accessor\n");
-   fprintf( stdout, "\tf   = %0.8g\n", [self f]);
-   fprintf( stdout, "\td   = %0.17g\n", [self d]);
+   mulle_fprintf( stdout, "Mulle Accessor\n");
+   mulle_fprintf( stdout, "\tf   = %0.8g\n", [self f]);
+   mulle_fprintf( stdout, "\td   = %0.17g\n", [self d]);
 #ifdef _C_LNG_DBL
-   fprintf( stdout, "\tld  = %0.21Lg\n", [self ld]);
+   mulle_fprintf( stdout, "\tld  = %0.21Lg\n", [self ld]);
 #endif
    // Voodoo check 2
-   fprintf( stdout, "Mulle KVC Accessor\n");
-   fprintf( stdout, "\tf   = %0.8g\n", [[self valueForKey:@"f"] floatValue]);
-   fprintf( stdout, "\td   = %0.17g\n", [[self valueForKey:@"d"] doubleValue]);
+   mulle_fprintf( stdout, "Mulle KVC Accessor\n");
+   mulle_fprintf( stdout, "\tf   = %0.8g\n", [[self valueForKey:@"f"] floatValue]);
+   mulle_fprintf( stdout, "\td   = %0.17g\n", [[self valueForKey:@"d"] doubleValue]);
 #ifdef _C_LNG_DBL
-   fprintf( stdout, "\tld  = %0.21Lg\n", [[self valueForKey:@"ld"] longDoubleValue]);
+   mulle_fprintf( stdout, "\tld  = %0.21Lg\n", [[self valueForKey:@"ld"] longDoubleValue]);
 #endif
 }
 

@@ -35,22 +35,22 @@
 
 - (void) dump
 {
-   fprintf( stderr, "c   = %d\n", _c);
-   fprintf( stderr, "uc  = %u\n", _uc);
-   fprintf( stderr, "s   = %d\n", _s);
-   fprintf( stderr, "us  = %u\n", _us);
-   fprintf( stderr, "i   = %d\n", _i);
-   fprintf( stderr, "ui  = %u\n", _ui);
+   mulle_fprintf( stderr, "c   = %d\n", _c);
+   mulle_fprintf( stderr, "uc  = %u\n", _uc);
+   mulle_fprintf( stderr, "s   = %d\n", _s);
+   mulle_fprintf( stderr, "us  = %u\n", _us);
+   mulle_fprintf( stderr, "i   = %d\n", _i);
+   mulle_fprintf( stderr, "ui  = %u\n", _ui);
 
-   fprintf( stderr, "l   = %ld\n", _l);
-   fprintf( stderr, "ul  = %lu\n", _ul);
-   fprintf( stderr, "ll  = %lld\n", _ll);
-   fprintf( stderr, "ull = %llu\n", _ull);
+   mulle_fprintf( stderr, "l   = %ld\n", _l);
+   mulle_fprintf( stderr, "ul  = %lu\n", _ul);
+   mulle_fprintf( stderr, "ll  = %lld\n", _ll);
+   mulle_fprintf( stderr, "ull = %llu\n", _ull);
 
-   fprintf( stderr, "f   = %g\n", _f);
-   fprintf( stderr, "d   = %g\n", _d);
+   mulle_fprintf( stderr, "f   = %g\n", _f);
+   mulle_fprintf( stderr, "d   = %g\n", _d);
 #ifdef _C_LNG_DBL
-   fprintf( stderr, "ld  = %Lg\n", _ld);
+   mulle_fprintf( stderr, "ld  = %Lg\n", _ld);
 #endif
 }
 

@@ -26,11 +26,11 @@ static void   key_value_path_dictionary_test()
    [dict takeValue:nr
         forKeyPath:@"a.b"];
 
-   printf( "%s\n", [dict count] == 1 ? "passed" : "failed");
-   printf( "%s\n", [dict valueForKeyPath:@"a.b"] == nr ? "passed" : "failed");
+   mulle_printf( "%s\n", [dict count] == 1 ? "passed" : "failed");
+   mulle_printf( "%s\n", [dict valueForKeyPath:@"a.b"] == nr ? "passed" : "failed");
    [dict takeValue:nil
         forKeyPath:@"a"];
-   printf( "%s\n", [dict valueForKeyPath:@"a.b"] == nil ? "passed" : "failed");
+   mulle_printf( "%s\n", [dict valueForKeyPath:@"a.b"] == nil ? "passed" : "failed");
 }
 
 
