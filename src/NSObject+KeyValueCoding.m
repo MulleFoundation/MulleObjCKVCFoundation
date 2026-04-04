@@ -58,6 +58,8 @@ NSString   *NSUndefinedKeyException = @"NSUndefinedKeyException";
 
 @implementation NSObject( _KeyValueCoding)
 
+@dependency NSObject( _MulleObjCKVCInformation);
+
 + (BOOL) useStoredAccessor
 {
    return( YES);
