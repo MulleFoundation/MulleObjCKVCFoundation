@@ -3,6 +3,8 @@
    {
       description="🔑 Key-Value-Coding based on MulleObjCStandardFoundation";
       domain="github";
+      language="c";
+      dialect="objc";
       name="MulleObjCKVCFoundation";
       user="MulleFoundation";
       repo="MulleObjCKVCFoundation";
