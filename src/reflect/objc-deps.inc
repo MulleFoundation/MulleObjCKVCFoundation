@@ -1,3 +1,4 @@
+      { @selector( MulleObjCDeps), @selector( MulleObjCStandardFoundation) },      // 3c20656f;MulleObjCDeps;ed704a42;MulleObjCStandardFoundation
       { @selector( NSArray), @selector( MulleObjCKVCArithmetic) },      // 233490fe;NSArray;51efafe9;MulleObjCKVCArithmetic
       { @selector( NSArray), @selector( _KeyValueCoding) },      // 233490fe;NSArray;c60e3006;_KeyValueCoding
       { @selector( NSDictionary), @selector( _KeyValueCoding) },      // 8b2abcad;NSDictionary;c60e3006;_KeyValueCoding
