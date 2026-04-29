@@ -49,7 +49,7 @@
 #endif
 
 
-@interface NSString( Private) < NSStringFuture>
+@interface NSString( Private) < NSStringFuture, MulleObjCFuture>
 @end
 
 
