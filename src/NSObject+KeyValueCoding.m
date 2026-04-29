@@ -49,7 +49,7 @@ NSString   *NSUndefinedKeyException = @"NSUndefinedKeyException";
 
 
 
-@interface NSString( Private) < NSStringFuture>
+@interface NSString( Private) < NSStringFuture, MulleObjCFuture>
 
 - (NSUInteger) mulleUTF8StringLength;
 

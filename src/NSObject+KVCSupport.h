@@ -77,7 +77,7 @@ static inline void   _MulleObjCKVCInformationDone( struct _MulleObjCKVCInformati
 }
 
 
-@protocol NSStringFuture
+@protocol NSStringFuture < MulleObjCFuture>
 
 - (NSUInteger) mulleUTF8StringLength;
 - (NSUInteger) mulleGetUTF8String:(char *) buf
@@ -94,7 +94,7 @@ static inline void   _MulleObjCKVCInformationDone( struct _MulleObjCKVCInformati
 @end
 
 
-@interface NSObject( KVCSupportFuture)
+@interface NSObject( KVCSupportFuture) < MulleObjCFuture>
 
 - (void) _divineKVCInformation:(struct _MulleObjCKVCInformation *) info
                         forKey:(id) key
