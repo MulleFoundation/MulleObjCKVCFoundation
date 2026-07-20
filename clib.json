@@ -1,6 +1,6 @@
 {
    "name" : "MulleObjCKVCFoundation",
-   "version" : "0.20.9",
+   "version" : "0.20.10",
    "description" : "🔑 Key-Value-Coding based on MulleObjCStandardFoundation",
    "keywords" : [],
    "license" : "BSD-3-Clause",
