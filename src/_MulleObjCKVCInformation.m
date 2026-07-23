@@ -320,6 +320,11 @@ void   __MulleObjCDivineStoredValueForKeyKVCInformation( struct _MulleObjCKVCInf
  *
  * Possibility #3 ask the class to fill in KVC value information <-- this is best!!
  * (see NSObject+NSKVCInformation)
+ *
+ * Since lookup eventually is by hash and hashes can be chained, we could possibly
+ * optimize this by precomputing '_' and 'set' hashes and then chaining key and Key to it.
+ * For lookup we actually may not need to create temporary strings at all. Lookup
+ * for exisiting selector or ivarname hash.
  */
 void   __MulleObjCDivineValueForKeyKVCInformation( struct _MulleObjCKVCInformation *p,
                                                    Class aClass,
