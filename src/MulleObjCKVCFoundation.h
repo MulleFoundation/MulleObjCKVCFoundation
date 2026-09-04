@@ -1,8 +1,8 @@
 //
-//  MulleObjCFoundationKVC.h
-//  MulleObjCStandardFoundation
+//  MulleObjCKVCFoundation.h
+//  MulleObjCKVCFoundation
 //
-//  Copyright (c) 2016 Nat! - Mulle kybernetiK.
+//  Copyright (c) 2017 Nat! - Mulle kybernetiK.
 //  Copyright (c) 2016 Codeon GmbH.
 //  All rights reserved.
 //
@@ -35,7 +35,7 @@
 //
 #import "import.h"
 
-#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0UL << 20) | (20 << 8) | 10)
+#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0UL << 20) | (21 << 8) | 0)
 
 #import "import.h"
 

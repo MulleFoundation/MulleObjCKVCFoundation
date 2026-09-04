@@ -2,8 +2,7 @@
 //  NSSortDescriptor+NSKeyValueCoding.m
 //  MulleObjCKVCFoundation
 //
-//  Created by Nat! on 28.03.17.
-//  Copyright © 2017 Mulle kybernetiK. All rights reserved.
+//  Copyright (c) 2017 Nat! - Mulle kybernetiK.
 //  All rights reserved.
 //
 //

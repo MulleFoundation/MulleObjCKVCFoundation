@@ -17,6 +17,11 @@ This adds a lot of methods to NSObject, NSArray, NSSet et al. via categories.
 
 
 
+## Documentation & Guides
+
+* [API Summary](asset/dox/api/toc)
+
+
 
 
 ## Requirements
