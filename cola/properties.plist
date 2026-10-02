@@ -6,7 +6,7 @@
       language="c";
       dialect="objc";
       name="MulleObjCKVCFoundation";
-      version="0.21.0";
+      version="0.21.1";
       user="MulleFoundation";
       repo="MulleObjCKVCFoundation";
       homepage="https://github.com/MulleFoundation/MulleObjCKVCFoundation";

@@ -59,7 +59,7 @@
 int main(int argc, const char * argv[]) {
 	@autoreleasepool {
 
-		Foo *foo = [[[Foo alloc] init] autorelease];
+		Foo *foo = [Foo instance];
 		id l = [foo valueForKeyPath:@"bars.@avg.value"];
 		mulle_printf( "l = %s\n", [l UTF8String]);
 
