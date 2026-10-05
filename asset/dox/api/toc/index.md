@@ -60,10 +60,10 @@ It re-exports every category/header of the library and defines the library
 version:
 
 ```c
-#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0UL << 20) | (21 << 8) | 0)
+#define MULLE_OBJC_KVC_FOUNDATION_VERSION   ((0UL << 20) | (21 << 8) | 1)
 ```
 
-(current version: 0.21.0).
+(current version: 0.21.1).
 
 ### 3.2. `NSObject+KeyValueCoding.h` — the public KVC interface
 
