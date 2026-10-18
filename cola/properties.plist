@@ -6,7 +6,6 @@
       language="c";
       dialect="objc";
       name="MulleObjCKVCFoundation";
-      version="0.21.1";
       user="MulleFoundation";
       repo="MulleObjCKVCFoundation";
       homepage="https://github.com/MulleFoundation/MulleObjCKVCFoundation";
@@ -25,9 +24,9 @@
       {
          description="📒 Lists mulle-objc runtime information contained in executables.";
          domain="github";
-         name="mulle-objc-list";
-         repo="mulle-objc-list";
-         url="https://github.com/mulle-objc/mulle-objc-list";
+         name="mulle-objc-tools";
+         repo="mulle-objc-tools";
+         url="https://github.com/mulle-objc/mulle-objc-tools";
          user="mulle-objc";
       }
    );
